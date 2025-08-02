@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>伯努利多项式与伯努利数 - 特殊函数</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../css/style.min.css" rel="stylesheet">
+<link href="../../css/extra.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../.." target="_blank" class="custom-link">特殊函数</a>
+</li>
+<li class="divider"></li>
+<li class="header">无穷级数和无穷乘积</li>
+
+<li>
+<a href="./" class="active">伯努利多项式与伯努利数</a>
+</li>
+
+<li>
+<a href="../euler/" class="">欧拉多项式与欧拉数</a>
+</li>
+
+<li>
+<a href="../maclaurin/" class="">欧拉-麦克洛林公式</a>
+</li>
+
+<li>
+<a href="../lagrange/" class="">拉格朗日展开公式</a>
+</li>
+
+<li>
+<a href="../orthogonal/" class="">正交多项式</a>
+</li>
+
+<li class="header">Gamma、Beta和Zeta函数</li>
+
+<li>
+<a href="../../second_chapter/gamma/" class="">Gamma函数</a>
+</li>
+
+<li>
+<a href="../../second_chapter/beta/" class="">Beta函数</a>
+</li>
+
+<li>
+<a href="../../second_chapter/zeta/" class="">Zeta函数</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="_1">伯努利多项式与伯努利数</h1>
+<p>在数学中，伯努利多项式与伯努利数是一对十分重要的概念，它们在组合数学、数论、概率论等领域有着广泛的应用。本文将深入探讨伯努利多项式与伯努利数的定义、性质以及它们之间的关系。</p>
+<p>伯努利多项式<span class="arithmatex">\(\mathrm{B}_n(x)\)</span>（或<span class="arithmatex">\(\varphi_n(x)\)</span>，<span class="arithmatex">\(n = 0,1,2,\cdots\)</span>）有不同的表示法表示，常见的有<strong>函数法</strong>和<strong>代数法</strong>。</p>
+<p><strong>函数法：</strong> 由下列展开式给出</p>
+<div class="arithmatex">\[
+\begin{align}\frac{t\mathrm{e}^{xt}}{\mathrm{e}^t-1}=\sum_{n=0}^\infty\frac{t^n}{n!}\varphi_n(x).\end{align}    \tag{1}
+\]</div>
+<p><strong>代数法：</strong> 当<span class="arithmatex">\(n \geq 0\)</span>时，</p>
+<div class="arithmatex">\[
+\varphi_n(x)=\sum_{k=0}^n\binom nk\varphi_kx^{n-k}   \tag{2}
+\]</div>
+<p>其中，<span class="arithmatex">\(\varphi_k = \varphi_k(0)\)</span>，称为伯努利数，<span class="arithmatex">\(\binom nk=\Large\frac{n\times(n-1)\times\cdots\times(n-k+1)}{k\times(k-1)\times\cdots\times1}\)</span>是二项式系数。</p>
+<h2 id="1">1、推导：由函数法表达式推导出代数法表达式</h2>
+<p>伯努利多项式的代数法表达式是由函数法表达式推导得出的，下面给出完整的推导过程。</p>
+<p><strong>第一步</strong>：将<span class="arithmatex">\(x=0\)</span>带入到公式（1）中得到：</p>
+<div class="arithmatex">\[
+\begin{align}\frac{t}{\mathrm{e}^t-1}=\sum_{k=0}^\infty\frac{t^k}{k!}\varphi_k(0).\end{align}    \tag{3}
+\]</div>
+<p><strong>第二步</strong>：求<span class="arithmatex">\(e^{xt}\)</span>的麦克劳林级数（Maclaurin series）：</p>
+<p>麦克劳林级数是函数在<span class="arithmatex">\(x=0\)</span>处的泰勒级数，其计算公式如下：</p>
+<div class="arithmatex">\[
+f(x)=f\left(0\right)+\frac{f^{\prime}\left(0\right)}{1!}x+\frac{f^{\prime\prime}\left(0\right)}{2!}x^{2}+\ldots+\frac{f^{\left(n\right)}\left(0\right)}{n!}x^{n}+\ldots(-R&lt;x&lt;R).  \tag{4}
+\]</div>
+<p>则可以求出<span class="arithmatex">\(e^{xt}\)</span>的麦克劳林级数为：</p>
+<div class="arithmatex">\[
+e^{xt} = 1+tx+\frac{t^2x^2}{2!}+\cdots+\frac{t^lx^l}{l!}+\cdots = \sum_{l=0}^{\infty}\frac{t^lx^l}{l!}  \tag{5}
+\]</div>
+<p><strong>第三步</strong>：将（3）和（5）两边分别相乘得到：</p>
+<div class="arithmatex">\[
+\frac{t\mathrm{e}^{xt}}{\mathrm{e}^t-1} = \sum_{k=0}^\infty\frac{t^k}{k!}\varphi_k(0)\sum_{l=0}^{\infty}\frac{t^lx^l}{l!}   \tag{6}
+\]</div>
+<p><strong>第四步</strong>：化简（6）式右边公式：</p>
+<div class="arithmatex">\[
+\begin{align} \sum_{k=0}^\infty\frac{t^k}{k!}\varphi_k(0)\sum_{l=0}^{\infty}\frac{t^lx^l}{l!} &amp;= \sum_{k=0}^\infty\sum_{l=0}^{\infty}\frac{t^k}{k!}\varphi_k(0)\frac{t^lx^l}{l!} \\ &amp; = \sum_{k=0}^\infty\sum_{l=0}^{\infty}\frac{t^kt^l}{k!l!}\varphi_k(0)x^l \\ &amp; = \sum_{k=0}^\infty\sum_{l=0}^{\infty}\frac{t^{k+l}}{k!l!}\varphi_k(0)x^l  \end{align}   \tag{7} 
+\]</div>
+<p>我们记<span class="arithmatex">\(n=k+l\)</span> , 然后带入（7）得：</p>
+<div class="arithmatex">\[
+\begin{align} &amp;\sum_{k=0}^\infty\sum_{l=0}^{\infty}\frac{t^{k+l}}{k!l!}\varphi_k(0)x^l  \\ = &amp;\sum_{k=0}^\infty\sum_{l=0}^{\infty}\frac{t^{n}}{k!(n-k)!}\varphi_k(0)x^{n-k}  \\   \overset{(a)}{=}&amp; \sum_{k=0}^\infty\sum_{l=0}^{\infty}   \binom nk \frac{t^{n}}{n!}\varphi_k(0)x^{n-k}  \\ \overset{(b)}{=} &amp; \sum_{n=0}^\infty\frac{t^{n}}{n!}\sum_{k=0}^{n}   \binom nk \varphi_k(0)x^{n-k}   \end{align}  \tag{8}
+\]</div>
+<p>公式（8）中的（a）是根据二项式级数的性质得到：<span class="arithmatex">\(\large\binom nk=\frac{n!}{k!(n-k)!}.\)</span>是根据<span class="arithmatex">\(n=k+l\)</span>得到，因为<span class="arithmatex">\(k \rightarrow \infty, l \rightarrow \infty\)</span>,所以<span class="arithmatex">\(n \rightarrow \infty\)</span>。同时<span class="arithmatex">\(k \leq n\)</span>。比较（1）和（8）的最后一项等式，我们得到（2），至此，推导完毕。</p>
+<h2 id="2">2、伯努利级数的递推公式</h2>
+<p><span class="arithmatex">\(\varphi_k = \varphi_k(0)\)</span>，为伯努利数，因为伯努利多项式计算公式（2）中包含伯努利数，所以需要知道其递推公式才能确定最终的伯努利多项式。本节推导伯努利数的递推公式。</p>
+<p>首先给出结果：</p>
+<div class="arithmatex">\[
+\begin{equation} \left\{              \begin{array}{lr}              \varphi_0=1 \\              \sum_{k=0}^{n-1}\frac1{k!(n-k)!}\varphi_k=0\quad(n\geqslant2)              \end{array} \right. \end{equation}   \tag{9}
+\]</div>
+<p>推导： 将公式（3）的两边同时乘以<span class="arithmatex">\(\frac{e^t-1}{t}\)</span>得到：</p>
+<div class="arithmatex">\[
+\begin{align} &amp;\frac{e^t-1}{t}\frac{t}{\mathrm{e}^t-1}=\frac{e^t-1}{t}\sum_{k=0}^\infty\frac{t^k}{k!}\varphi_k(0)  \\ \Rightarrow&amp; 1 = \frac{e^t-1}{t}\sum_{k=0}^\infty\frac{t^k}{k!}\varphi_k(0)  \\ \overset{(a)}{\Rightarrow}&amp; 1 = \sum_{l=1}^\infty\frac{t^{l-1}}{l!}\sum_{k=0}^\infty\frac{t^k}{k!}\varphi_k(0) \\ \overset{(b)}{\Rightarrow}&amp; 1 = \sum_{n=1}^\infty t^{n-1}\sum_{k=0}^{n-1}\frac{\varphi_k}{k!(n-k)!}. \end{align}   \tag{10} 
+\]</div>
+<p>步骤（a）是通过求解<span class="arithmatex">\(e^t\)</span>的麦克劳林级数得到。</p>
+<div class="arithmatex">\[
+e^t = 1+t+\frac{t^2}{2!}+\cdots+\frac{t^l}{l!}+\cdots = \sum\limits_{l=0}^{\infty}\frac{t^l}{l!}\Rightarrow \frac{e^t-1}{t} = \sum\limits_{l=1}^{\infty}\frac{t^{l-1}}{l!}
+\]</div>
+<p>步骤（b）是通过二项式级数的性质确定的，设<span class="arithmatex">\(n=k+l\)</span>，参考公式（8）的推导即可得到。</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d^p}}{\mathrm{d}x^p}\varphi_n(x)=\sum_{k=0}^{n}\binom{n}{k}(n-k)\varphi_kx^{n-k-1}\\\overset{(a)}{=}\sum_{k=0}^{n-1}\binom{n}{k}(n-k)\varphi_kx^{n-k-1}\overset{(b)}{=}n\varphi_{n-1}(x)  \tag{11}
+\]</div>
+<p>在求解伯努利多项式数列是，我们常设<span class="arithmatex">\(\varphi_0=1\)</span>，然后观察（10）的最后一个等式，可以得到：<span class="arithmatex">\(\sum_{k=0}^{n-1}\frac1{k!(n-k)!}\varphi_k=0\quad(n\geqslant2)\)</span>，至此，我们得到了伯努利数的递推公式。</p>
+<h2 id="3">3、微商和积分</h2>
+<p>我们可以使用公式（2）求解伯努利多项式的微商：</p>
+<p>recall：<span class="arithmatex">\(\varphi_n(x)=\sum_{k=0}^n\binom nk\varphi_kx^{n-k}\)</span></p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d}x}\varphi_n(x)=\sum_{k=0}^{n}\binom{n}{k}(n-k)\varphi_kx^{n-k-1}\\ \overset{(a)}{=}\sum_{k=0}^{n-1}\binom{n}{k}(n-k)\varphi_kx^{n-k-1}\overset{(b)}{=}n\varphi_{n-1}(x)  \tag{11}
+\]</div>
+<p>步骤（a）是因为当<span class="arithmatex">\(k=n\)</span>时，<span class="arithmatex">\(n-k=0\)</span>。（b）是由于二项式系数的性质：<span class="arithmatex">\(\binom nk=\frac{n}{n-k}\binom {n-1}k\)</span>。同时求多重微商：</p>
+<div class="arithmatex">\[
+\begin{align} \frac{\mathrm{d^p}}{\mathrm{d}x^p}\varphi_n(x)&amp;=\sum_{k=0}^{n}\binom{n}{k}(n-k)(n-k-1)\cdots(n-k-p+1)\varphi_kx^{n-k-p} \\ &amp;\overset{(a)}{=}\sum_{k=0}^{n-p}\binom{n-p}{k}n(n-1)\cdots(n-p+1)\varphi_kx^{n-k-p}  \\ &amp;\overset{(b)}{=}\frac{n!}{(n-p)!}\sum\limits_{k=0}^{n-p}\binom{n-p}{k}\varphi_kx^{n-k-p} \\ &amp;\overset{}{=}\frac{n!}{(n-p)!}\varphi_{n-p}(x)   \end{align} \tag{12}
+\]</div>
+<p>(a)：<span class="arithmatex">\(k=n, n-1,\cdots,n-p+1\)</span>是等式右边为<span class="arithmatex">\(0\)</span>，同时由二项式系数的性质得到：</p>
+<div class="arithmatex">\[
+\begin{align}
+\binom nk &amp;= \frac{n(n-1)\cdots(n-p+1)}{(n-k)(n-k-1)\cdots(n-k-p+1)} \binom {n-p}k \\ &amp;\Rightarrow (n-k)(n-k-1)\cdots(n-k-p+1)\binom nk \\&amp;=(n-k)(n-k-1)\cdots(n-k-p+1) \frac{n(n-1)\cdots(n-p+1)}{(n-k)(n-k-1)\cdots(n-k-p+1)} \binom {n-p}k \\&amp;= \frac{n!}{(n-p)!}\binom {n-p}k
+\end{align}
+\]</div>
+<p>积分：将公式（11）中的<span class="arithmatex">\(n\)</span>换成<span class="arithmatex">\(n+1\)</span>得：</p>
+<div class="arithmatex">\[
+\begin{align} &amp;\frac{\mathrm{d}}{\mathrm{d}x}\varphi_{n+1}(x)=(n+1)\varphi_{n}(x)  \\ \Rightarrow&amp;\frac{\mathrm{d}}{\mathrm{d}x}\varphi_{n+1}(x)\frac{1}{n+1} = \varphi_{n}(x)  \\ \Rightarrow &amp; \int_{a}^{x}\varphi_{n}(x)  \mathrm{d}x=\frac{1}{n+1}\int_{a}^{x}\frac{\mathrm{d}}{\mathrm{d}x}\varphi_{n+1}(x)  \mathrm{d}x = \frac{1}{n+1}[\varphi_{n+1}(x)-\varphi_{n+1}(a)  ] \end{align}  \tag{13} 
+\]</div>
+<h2 id="4">4、差分关系</h2>
+<p>同样的先给出关系式：</p>
+<div class="arithmatex">\[
+\begin{aligned}&amp;\varphi_{0}\left(x+1\right)=\varphi_{0}\left(x\right),\quad\varphi_{1}\left(x+1\right)=\varphi_{1}\left(x\right)+1,\\&amp;\varphi_{n}\left(x+1\right)=\varphi_{n}\left(x\right)+nx^{n-1}\quad(n\geqslant2).\end{aligned}   \tag{14}
+\]</div>
+<p>这个关系式可以通过公式（1）推导出来</p>
+<p>recall：<span class="arithmatex">\(\frac{t\mathrm{e}^{xt}}{\mathrm{e}^t-1}=\sum_{n=0}^\infty\frac{t^n}{n!}\varphi_n(x)。\)</span>当<span class="arithmatex">\(x=x+1\)</span>时<span class="arithmatex">\(\frac{t\mathrm{e}^{(x+1)t}}{\mathrm{e}^t-1}=\sum_{n=0}^\infty\frac{t^n}{n!}\varphi_n(x+1)。 等式的左边可以化简为\)</span></p>
+<div class="arithmatex">\[
+\frac{t\mathrm{e}^{(x+1)t}}{\mathrm{e}^t-1} = \frac{t\mathrm{e}^{(x+1)t}-te^{xt}+te^{xt}}{\mathrm{e}^t-1}=t\mathrm{e}^{xt}+\frac{t\mathrm{e}^{xt}}{\mathrm{e}^{t}-1}  \tag{15}
+\]</div>
+<p>由公式（5）得：<span class="arithmatex">\(t\mathrm{e}^{xt} = \sum\limits_{l=0}^{\infty}\frac{t^{l+1}x^l}{l!}\)</span>，（15）可以化简为：<span class="arithmatex">\(\sum\limits_{l=0}^{\infty}\frac{t^{l+1}x^l}{l!} +\sum\limits_{n=0}^\infty\frac{t^n}{n!}\varphi_n(x) =\sum_{n=0}^\infty\frac{t^n}{n!}\varphi_n(x+1)\)</span></p>
+<p>设<span class="arithmatex">\(n=l+1\)</span>得：<span class="arithmatex">\(\sum\limits_{n=1}^{\infty}\frac{t^{n}x^{n-1}}{n!} +\sum\limits_{n=0}^\infty\frac{t^n}{n!}\varphi_n(x) =\sum_{n=0}^\infty\frac{t^n}{n!}\varphi_n(x+1)\)</span></p>
+<p>比较<span class="arithmatex">\(\frac{t^n}{n!}\)</span>得到：<span class="arithmatex">\(\varphi_{n}\left(x+1\right)=\varphi_{n}\left(x\right)+nx^{n-1}\quad(n\geqslant2)\)</span></p>
+<h2 id="5">5、加法关系</h2>
+<div class="arithmatex">\[
+\varphi_{n}(x+y)
+=\sum_{k=0}^{n}\binom{n}{k}\,\varphi_{k}(y)\,x^{n-k}.
+\tag{16}
+\]</div>
+<p><strong>证明：</strong><br />
+将生成函数中的 <span class="arithmatex">\(x\)</span> 取代为 <span class="arithmatex">\(x+y\)</span>，由</p>
+<div class="arithmatex">\[
+\frac{t\,e^{xt}}{e^t-1}
+=\sum_{n=0}^{\infty}\frac{t^n}{n!}\,\varphi_n(x)
+\]</div>
+<p>得</p>
+<div class="arithmatex">\[
+\frac{t\,e^{(x+y)t}}{e^t-1}
+=\sum_{n=0}^{\infty}\frac{t^n}{n!}\,\varphi_n(x+y).
+\]</div>
+<p>另一方面，注意</p>
+<div class="arithmatex">\[
+\frac{t\,e^{(x+y)t}}{e^t-1}
+=\frac{t\,e^{yt}}{e^t-1}\;e^{xt}
+=\Bigl(\sum_{k=0}^{\infty}\frac{t^k}{k!}\,\varphi_k(y)\Bigr)
+\;\Bigl(\sum_{\ell=0}^{\infty}\frac{t^\ell}{\ell!}\,x^\ell\Bigr).
+\]</div>
+<p>对上式做乘法并按 <span class="arithmatex">\(t^n\)</span> 展开系数，得</p>
+<div class="arithmatex">\[
+\frac{t\,e^{(x+y)t}}{e^t-1}
+=\sum_{n=0}^{\infty}\frac{t^n}{n!}
+\Bigl(\sum_{k=0}^n\binom{n}{k}\,\varphi_k(y)\,x^{n-k}\Bigr).
+\]</div>
+<p>比较两边关于 <span class="arithmatex">\(t^n/n!\)</span> 的系数，即得（16）。</p>
+<h2 id="6">6、求和公式</h2>
+<div class="arithmatex">\[
+\sum_{x=1}^{m}x^{n}
+=\frac{1}{n+1}\bigl[\varphi_{n+1}(m+1)-\varphi_{n+1}\bigr]
+\quad (n\ge1)
+\tag{17}
+\]</div>
+<p>该公式由 (14) 推导出：</p>
+<p>recall: <span class="arithmatex">\(\varphi_n(x+1)=\varphi_n(x)+n\,x^{n-1}\quad(n\ge2)\)</span></p>
+<div class="arithmatex">\[
+\varphi_n(x+1)-\varphi_n(x)
+=n\,x^{n-1}
+\;\\ \Longrightarrow\;
+\varphi_{n+1}(x+1)-\varphi_{n+1}(x)
+=(n+1)\,x^n
+\;\\ \Longrightarrow\;
+\frac{\varphi_{n+1}(x+1)-\varphi_{n+1}(x)}{n+1}
+=x^n.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\sum_{x=1}^{m}x^{n}
+=\sum_{x=0}^{m}x^{n}
+=\sum_{x=1}^{m}\frac{\varphi_{n+1}(x+1)-\varphi_{n+1}(x)}{n+1}
+=\frac{1}{n+1}\bigl[\varphi_{n+1}(m+1)-\varphi_{n+1}(0)\bigr].
+\]</div>
+<h2 id="7">7. 互余宗量关系</h2>
+<div class="arithmatex">\[
+\varphi_{n}(1 - x) = (-1)^{n}\,\varphi_{n}(x)
+\tag{18}
+\]</div>
+<p>推导依然可以通过公式 (1) 得到：</p>
+<p>从生成函数</p>
+<div class="arithmatex">\[
+\frac{t\,e^{(1 - x)t}}{e^{t} - 1}
+= \sum_{n=0}^{\infty}\frac{t^{n}}{n!}\,\varphi_{n}(1 - x)
+\]</div>
+<p>两边同时乘以 <span class="arithmatex">\(e^{-t}\)</span> 并整理得</p>
+<div class="arithmatex">\[
+\frac{e^{-t}\,t\,e^{(1 - x)t}}{e^{-t}(e^{t} - 1)}
+= \frac{-t\,e^{-x t}}{e^{-t} - 1}
+= \sum_{n=0}^{\infty}\frac{(-t)^{n}}{n!}\,\varphi_{n}(x).
+\]</div>
+<p>比较两边关于 <span class="arithmatex">\(t^{n}/n!\)</span> 的系数，即得 (18)。</p>
+<h2 id="8">8. 伯努利数的另一种表达</h2>
+<p>recall (3): <span class="arithmatex">\(\frac{t}{e^t - 1}
+= \sum_{k=0}^\infty \frac{t^k}{k!},\varphi_k(0).\)</span></p>
+<p>在上面，我们设 <span class="arithmatex">\(x=0\)</span> 后得到了伯努利数的表达式 (3)，在有些场景中（求双曲曲线的泰勒展开时）经常用到下面的表达式：</p>
+<div class="arithmatex">\[
+t\Bigl(\frac{1}{e^t - 1} + \tfrac12\Bigr)
+= \frac{t}{2}\,\frac{e^{t/2}+e^{-t/2}}{e^{t/2}-e^{-t/2}}
+= 1 + \sum_{n=1}^\infty(-1)^{n-1}\,\frac{t^{2n}}{(2n)!}\,B_n,
+\tag{19}
+\]</div>
+<p>将 (3) 式的左边加上 <span class="arithmatex">\(\tfrac t2\)</span> 之后，就变成了偶函数，偶函数的性质就是右边的级数中只会出现 <span class="arithmatex">\(t\)</span> 的偶次方。所以可以写成 (19) 右边的形式。有时候 <span class="arithmatex">\(B_n\)</span> 也被称为伯努利数。（请注意有些资料将 <span class="arithmatex">\(\varphi_n\)</span> 表示成 <span class="arithmatex">\(B_n\)</span>，在这里两个是不一样的。）它和 <span class="arithmatex">\(\varphi_n\)</span> 的关系是：</p>
+<div class="arithmatex">\[
+\varphi_{2k} = (-1)^{k-1}\,B_k,\qquad
+\varphi_{2k+1} = 0
+\quad (k=1,2,\dots).
+\tag{20}
+\]</div>
+<p>右边公式有个 1，是因为左边泰勒展开式中：</p>
+<div class="arithmatex">\[
+f(0) = \lim_{t\to0} t\Bigl(\frac{1}{e^t-1} + \tfrac12\Bigr) = 1.
+\]</div>
+<p>公式 (3) 和 (19) 对后面我们求双曲曲线的泰勒展开很有用。</p>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../js/main.js"></script>
+<script src="../../<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+    }
+  };
+</script>
+"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/gitbook.min.js"></script>
+<script src="../../js/theme.min.js"></script>
+</body>
+</html>

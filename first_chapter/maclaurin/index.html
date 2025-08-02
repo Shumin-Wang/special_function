@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>欧拉-麦克洛林公式 - 特殊函数</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../css/style.min.css" rel="stylesheet">
+<link href="../../css/extra.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../.." target="_blank" class="custom-link">特殊函数</a>
+</li>
+<li class="divider"></li>
+<li class="header">无穷级数和无穷乘积</li>
+
+<li>
+<a href="../Bernoulli/" class="">伯努利多项式与伯努利数</a>
+</li>
+
+<li>
+<a href="../euler/" class="">欧拉多项式与欧拉数</a>
+</li>
+
+<li>
+<a href="./" class="active">欧拉-麦克洛林公式</a>
+</li>
+
+<li>
+<a href="../lagrange/" class="">拉格朗日展开公式</a>
+</li>
+
+<li>
+<a href="../orthogonal/" class="">正交多项式</a>
+</li>
+
+<li class="header">Gamma、Beta和Zeta函数</li>
+
+<li>
+<a href="../../second_chapter/gamma/" class="">Gamma函数</a>
+</li>
+
+<li>
+<a href="../../second_chapter/beta/" class="">Beta函数</a>
+</li>
+
+<li>
+<a href="../../second_chapter/zeta/" class="">Zeta函数</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="-">欧拉-麦克劳林公式推导</h1>
+<h1 id="euler">Euler–麦克劳林公式</h1>
+<p>设函数 <span class="arithmatex">\(f(x)\)</span> 在区间 <span class="arithmatex">\([a,b]\)</span> 上有直到 <span class="arithmatex">\(r\)</span> 阶连续微商，当 <span class="arithmatex">\(r\ge2\)</span>，给出欧拉–麦克劳林公式：</p>
+<div class="arithmatex">\[
+\begin{align}\int_a^b f(x)\,\mathrm{d}x
+&amp;= h\Bigl[\tfrac12f(a) + f(a+h) + f(a+2h) + \cdots + f(a+(n-1)h) + \tfrac12f(b)\Bigr]
+\\&amp;-\sum_{k=1}^r \frac{h^{2k}\,\varphi_{2k}}{(2k)!}\bigl[f^{(2k-1)}(b)-f^{(2k-1)}(a)\bigr]
++R_r
+\tag{1}
+\end{align}
+\]</div>
+<p>这里<span class="arithmatex">\(h=\frac{b-a}{n},\quad \varphi_{2k}\)</span>，是伯努利数，<span class="arithmatex">\(\quad \varphi_{2k}(x)\)</span>是伯努利多项式，</p>
+<div class="arithmatex">\[
+R_r=\frac{h^{2r+3}\,\varphi_{2r+2}}{(2r+2)!}\sum_{i=1}^n f^{(2r+2)}(\xi_i),\quad x_i&lt;\xi_i&lt;x_{i+1}.
+\]</div>
+<h2 id="1-euler">1. Euler–麦克劳林公式推导</h2>
+<p>要推导出这个公式我们需要知道一些基本性质。</p>
+<p>1) <strong>伯努利多项式的微分公式</strong>（参考：HappyWang: 特殊函数 (1)：伯努利多项式与伯努利数）</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}^p}{\mathrm{d}x^p}\,\varphi_n(x)
+=\frac{n!}{(n-p)!}\,\varphi_{n-p}(x)
+\tag{2}
+\]</div>
+<p>同时根据伯努利的代数表达式可以得到：</p>
+<div class="arithmatex">\[
+\varphi_0(x)=1
+\tag{3}
+\]</div>
+<p>2) <strong>伯努利多项式的差分关系</strong></p>
+<div class="arithmatex">\[
+\varphi_0(x+1)=\varphi_0(x),\quad
+\varphi_1(x+1)=\varphi_1(x)+1,\quad
+\\ \varphi_n(x+1)=\varphi_n(x)+n\,x^{n-1}\quad(n\ge2).
+\tag{4}
+\]</div>
+<p>3) <strong>伯努利多项式的前几项</strong>（可以根据代数表达式和伯努利数的递推公式得到）</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp;\varphi_0(x)=1,\quad \varphi_1(x)=x-\tfrac12,\quad \varphi_2(x)=x^2-x+\tfrac16,\\
+&amp;\varphi_3(x)=x(x-1)\Bigl(x-\tfrac12\Bigr)=x^3-\tfrac32x^2+\tfrac12x,\\
+&amp;\varphi_4(x)=x^4-2x^3+x^2-\tfrac1{30},\\
+&amp;\varphi_5(x)=x(x-1)\Bigl(x-\tfrac12\Bigr)\bigl(x^2-x-\tfrac13\bigr)
+=x^5-\tfrac52x^4+\tfrac53x^3-\tfrac16x,\\
+&amp;\varphi_6(x)=x^6-3x^5+\tfrac52x^4-\tfrac12x^2+\tfrac1{42}.
+\end{aligned}
+\tag{5}
+\]</div>
+<p>4) <strong>分部积分公式</strong></p>
+<div class="arithmatex">\[
+\int_a^b u(x)\,v'(x)\,\mathrm{d}x
+=\bigl[u(x)v(x)\bigr]_a^b-\int_a^b u'(x)\,v(x)\,\mathrm{d}x
+\\ =u(b)v(b)-u(a)v(a)-\int_a^b u'(x)\,v(x)\,\mathrm{d}x.
+\tag{6}
+\]</div>
+<p>5) <strong>黎曼积分</strong>（参考：定积分（黎曼积分）– yanghh – 博客园）</p>
+<p>对闭区间 <span class="arithmatex">\([a,b]\)</span> 上的实值函数，将其等距分割<span class="arithmatex">\(a=x_0&lt;x_1&lt;\cdots&lt;x_n=b\)</span>，然后根据黎曼积分得到：</p>
+<div class="arithmatex">\[
+\int_a^b f(x)\,\mathrm{d}x
+=\sum_{i=0}^{n-1}\int_{x_i}^{x_{i+1}}f(x)\,\mathrm{d}x.
+\tag{7}
+\]</div>
+<p>设<span class="arithmatex">\(x=x_i+ht), (h=\frac{b-a}{n}\)</span>，得到：</p>
+<div class="arithmatex">\[
+\int_a^b f(x)\,\mathrm{d}x
+=\sum_{i=0}^{n-1}\int_0^1 f(x_i+ht)\,h\,\mathrm{d}t.
+\tag{8}
+\]</div>
+<p>有了以上的知识前提就可以来推导 Euler–麦克劳林公式了。</p>
+<h3 id="1">推导 1)</h3>
+<div class="arithmatex">\[
+\int_0^1 f(x)\,\mathrm{d}x
+=\int_0^1\varphi_0(x)\,f(x)\,\mathrm{d}x
+\;\overset{(a)}{=}\;
+\int_0^1\varphi_1(x)\,f(x)\,\mathrm{d}x
+\]</div>
+<div class="arithmatex">\[
+\overset{(b)}{=}\;
+\bigl[\varphi_1(x)f(x)\bigr]_0^1
+-\int_0^1 \bigl(\varphi_1(x)\bigr)'\,f(x)\,\mathrm{d}x
+\;\overset{(c)}{=}\;
+\varphi_1(x)f(x)\big|_0^1
+-\tfrac12\int_0^1 \varphi_2(x)\,f'(x)\,\mathrm{d}x
+\]</div>
+<div class="arithmatex">\[
+\overset{(d)}{=}\;
+\varphi_1(x)f(x)\big|_0^1
+-\tfrac12\varphi_2(x)f'(x)\big|_0^1
++\tfrac12\int_0^1 \varphi_2(x)\,f''(x)\,\mathrm{d}x
+\]</div>
+<div class="arithmatex">\[
+\overset{(e)}{=}\;
+\tfrac12\bigl(f(1)+f(0)\bigr)
+-\sum_{k=1}^r\frac{\varphi_{2k}}{(2k)!}\bigl[f^{(2k-1)}(1)-f^{(2k-1)}(0)\bigr]
++R_r
+\tag{9}
+\]</div>
+<p>根据伯努利多项式的性质 <span class="arithmatex">\(\varphi_0(x)=1\)</span>，（a）（c）是根据伯努利多项式的微分公式 (2) 得到，（b）（d）是根据分步积分得到。（e）是根据伯努利多项式的差分方程 (4) 和多项式的微分公式 (2) 共同得到。之所以只有偶数项，是因为伯努利多项式的奇数项为 0。<span class="arithmatex">\(\varphi_{2k}/(2k)!\)</span> 是根据公式 (2) 累乘得到。</p>
+<p>recall 公式 (2)：  </p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}^p}{\mathrm{d}x^p}\,\varphi_n(x)
+=\frac{n!}{(n-p)!}\,\varphi_{n-p}(x)
+\]</div>
+<div class="arithmatex">\[
+\frac{\mathrm{d}^p}{\mathrm{d}x^p}\,\varphi_{2k}(x)
+=\frac{(2k)!}{(2k-p)!}\,\varphi_{2k-p}(x)
+\\=\frac{(2k)!}{(2k-p)!\,(2k-p-1)!\,\cdots\,2!\,1!}\,\varphi_{1}(x)=\frac{(2k)!}{1!}\,\varphi_{1}(x)
+\tag{10}
+\]</div>
+<p>同时由于差分公式：</p>
+<div class="arithmatex">\[
+\varphi_{2k}(x+1)=\varphi_{2k}(x)+(2k)\,x^{2k-1},\quad k&gt;0,\quad
+\text{当 }x=0\text{ 时，}\;\varphi_{2k}(1)=\varphi_{2k}(0)=\varphi_{2k}.
+\]</div>
+<p><span class="arithmatex">\(\varphi_{2k}\)</span> 是伯努利数。</p>
+<div class="arithmatex">\[
+\varphi_{1}(x)\,f(x)\big\vert_{0}^{1}
+=\varphi_{1}(1)\,f(1)-\varphi_{1}(0)\,f(0)
+=\tfrac12f(1)+\tfrac12f(0),
+\]</div>
+<p>因为根据公式 (5)，<span class="arithmatex">\(\varphi_{1}(1)=\tfrac12,\;\varphi_{1}(0)=-\tfrac12\)</span>。</p>
+<p>这里的 <span class="arithmatex">\(R_{r}\)</span> 是余项</p>
+<div class="arithmatex">\[
+R_{r}
+=\frac{1}{(2r+2)!}\int_{0}^{1}\varphi_{2r+2}(x)\,f^{(2r+2)}(x)\,\mathrm{d}x
+=\frac{\varphi_{2r+2}}{(2r+2)!}\,f^{(2r+2)}(\xi),
+\quad0\le\xi\le1.
+\tag{11}
+\]</div>
+<h3 id="2">推导 2)</h3>
+<p>将推导 1) 扩展到一个定区间 <span class="arithmatex">\([a,b]\)</span> 上，运用上面的黎曼积分 (7) 可以得到：</p>
+<div class="arithmatex">\[
+\int_a^b f(x)\,\mathrm{d}x
+=\sum_{i=0}^{n-1} h\int_0^1 f(x_i+ht)\,\mathrm{d}t
+\]</div>
+<div class="arithmatex">\[
+=\sum_{i=0}^{n-1} h\Bigl[\tfrac12\bigl(f(x_i+h)+f(x_i)\bigr)
+-\sum_{k=1}^r\frac{\varphi_{2k}(x)}{(2k)!}h^{2k-1}\bigl[f^{(2k-1)}(x_i+h)-f^{(2k-1)}(x_i)\bigr]
++R_r\Bigr]
+\]</div>
+<div class="arithmatex">\[
+= h\Bigl[\tfrac12f(a)+f(a+h)+\cdots+f(a+(n-1)h)+\tfrac12f(b)\Bigr]
+\\-\sum_{k=1}^r\frac{h^{2k}\varphi_{2k}}{(2k)!}\bigl[f^{(2k-1)}(b)-f^{(2k-1)}(a)\bigr]
++R_r,
+\tag{12}
+\]</div>
+<p>这里<span class="arithmatex">\(R_r=\frac{h^{2r+3}\varphi_{2r+2}}{(2r+2)!}\sum_{i=1}^n f^{(2r+2)}(\xi_i),\quad x_i&lt;\xi_i&lt;x_{i+1}.\)</span></p>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../js/main.js"></script>
+<script src="../../<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+    }
+  };
+</script>
+"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/gitbook.min.js"></script>
+<script src="../../js/theme.min.js"></script>
+</body>
+</html>

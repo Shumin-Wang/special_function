@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>欧拉多项式与欧拉数 - 特殊函数</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../css/style.min.css" rel="stylesheet">
+<link href="../../css/extra.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../.." target="_blank" class="custom-link">特殊函数</a>
+</li>
+<li class="divider"></li>
+<li class="header">无穷级数和无穷乘积</li>
+
+<li>
+<a href="../Bernoulli/" class="">伯努利多项式与伯努利数</a>
+</li>
+
+<li>
+<a href="./" class="active">欧拉多项式与欧拉数</a>
+</li>
+
+<li>
+<a href="../maclaurin/" class="">欧拉-麦克洛林公式</a>
+</li>
+
+<li>
+<a href="../lagrange/" class="">拉格朗日展开公式</a>
+</li>
+
+<li>
+<a href="../orthogonal/" class="">正交多项式</a>
+</li>
+
+<li class="header">Gamma、Beta和Zeta函数</li>
+
+<li>
+<a href="../../second_chapter/gamma/" class="">Gamma函数</a>
+</li>
+
+<li>
+<a href="../../second_chapter/beta/" class="">Beta函数</a>
+</li>
+
+<li>
+<a href="../../second_chapter/zeta/" class="">Zeta函数</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="eulereuler">Euler多项式与Euler数</h1>
+<p>欧拉多项式是数学中的一个重要概念，最早由瑞士数学家莱昂哈德·欧拉在18世纪中期引入。它们在数论、组合数学和代数结构等领域中扮演着重要角色，并在解决一系列数学问题中发挥着关键作用。本文将深入探讨欧拉多项式的定义、性质以及它们在数学研究中的应用。</p>
+<p>同伯努利多项式类似，Euler 多项式 <span class="arithmatex">\(E_n(x)\,(n=0,1,2,\dots)\)</span> 也有生成函数<strong>表达式</strong>和<strong>代数法表达式</strong>*。</p>
+<p><strong>生成函数表达式</strong>：</p>
+<div class="arithmatex">\[
+\frac{2e^{xt}}{e^{t}+1}
+=\sum_{n=0}^{\infty}\frac{t^{n}}{n!}\,E_{n}(x)
+\tag{1}
+\]</div>
+<p>当将 <span class="arithmatex">\(x=0\)</span> 时，(1) 式将变成偶函数，右边将不再出现 <span class="arithmatex">\(t\)</span> 的奇次方。其形式为：</p>
+<div class="arithmatex">\[
+\frac{2e^{t/2}}{e^{t}+1}=\mathrm{sech}(\frac{t}{2})=\sum_{n=0}^{\infty}\frac{(-1)^{n}E_{n}}{(2n)!}\Bigl(\frac{t}{2}\Bigr)^{2n}
+\tag{2}
+\]</div>
+<p>这里的 <span class="arithmatex">\(E_{n}=E_{n}(0)\)</span>，被称为 Euler 数，比较 (1) 式和 (2) 式的右边，将 <span class="arithmatex">\(x=\tfrac12\)</span> 带入 (1) 的右边，得到：</p>
+<div class="arithmatex">\[
+\frac{2e^{t/2}}{e^{t}+1}
+=\sum_{n=0}^{\infty}\frac{t^{n}}{n!}\,E_{n}\Bigl(\tfrac12\Bigr)
+=\sum_{n=0}^{\infty}\frac{t^{2n}}{(2n)!}\,E_{n}\Bigl(\tfrac12\Bigr)
+\tag{3}
+\]</div>
+<p>最后一个等式是由于函数关于 <span class="arithmatex">\(t\)</span> 是偶函数，所以奇数项为 0。</p>
+<p>比较 (2) 和 (3) 的右侧可以得到：</p>
+<div class="arithmatex">\[
+\sum_{n=0}^{\infty}\frac{(-1)^{n}E_{n}}{(2n)!}\Bigl(\frac{t}{2}\Bigr)^{2n}
+=\sum_{n=0}^{\infty}\frac{t^{2n}}{(2n)!}\,E_{n}\Bigl(\tfrac12\Bigr)
+\;\\ \Longrightarrow\;
+\frac{(-1)^{n}E_{n}}{2^{2n}}
+=E_{n}\Bigl(\tfrac12\Bigr)
+\;\\ \Longrightarrow\;
+E_{n}=(-1)^{n}2^{2n}\,E_{n}\Bigl(\tfrac12\Bigr).
+\tag{4}
+\]</div>
+<p><strong>代数法（显明）表达式：</strong> 当 <span class="arithmatex">\(n\ge0\)</span> 时，</p>
+<div class="arithmatex">\[
+E_{n}(x)
+=\sum_{k=0}^{\lfloor n/2\rfloor}
+(-1)^{k}\,\frac{E_{k}}{2^{2k}}\,
+\binom{n}{2k}\,
+\Bigl(x-\tfrac12\Bigr)^{\,n-2k}.
+\tag{5}
+\]</div>
+<p>其中 <span class="arithmatex">\(E_{k}=E_{k}(0)\)</span>，被称为 Euler 数，</p>
+<p><span class="arithmatex">\(\displaystyle\binom{n}{2k}=\frac{n(n-1)\cdots(n-2k+1)}{2k\times(2k-1)\times\cdots\times1}\)</span> 是二项式系数。</p>
+<h2 id="1">1. 推导：由函数法表达式推导出代数表达式</h2>
+<p>(1) 式的左边可以写成：</p>
+<div class="arithmatex">\[
+\frac{2e^{t/2}e^{\bigl(x-\tfrac12\bigr)t}}{e^t+1}
+\;\overset{(a)}{=}\;
+\sum_{k=0}^{\infty}\frac{(-1)^kE_k}{(2k)!}\Bigl(\frac t2\Bigr)^{2k}
+\;\cdot\;\sum_{l=0}^{\infty}\frac{(x-\tfrac12)^l}{l!}\,t^l
+\;=\;\sum_{k=0}^{\infty}\sum_{l=0}^{\infty}
+\frac{(-1)^kE_k\,t^{2k+l}(x-\tfrac12)^l}{(2k)!\,l!\,2^{2k}}
+\]</div>
+<div class="arithmatex">\[
+\overset{(b)}{=}\;
+\sum_{k=0}^{\infty}\sum_{l=0}^{\infty}
+\frac{(-1)^kE_k\,t^n\,(x-\tfrac12)^{\,n-2k}}
+{(2k)!\,(n-2k)!\,2^{2k}}
+\]</div>
+<div class="arithmatex">\[
+\overset{(c)}{=}\;
+\sum_{n=0}^{\infty}\frac{t^n}{n!}
+\sum_{k=0}^{\lfloor n/2\rfloor}
+(-1)^k\frac{E_k}{2^{2k}}
+\binom{n}{2k}\Bigl(x-\tfrac12\Bigr)^{\,n-2k},
+\tag{6}
+\]</div>
+<p>步骤 （a）是因为公式 (2) 以及<span class="arithmatex">\(\frac{e^{\bigl(x-\tfrac12\bigr)t}}{e^t+1}
+=\sum_{l=0}^{\infty}\frac{(x-\tfrac12)^l}{l!},t^l\)</span> 在 <span class="arithmatex">\(x=\tfrac12\)</span>的泰勒级数展开：</p>
+<div class="arithmatex">\[
+\frac{\mathrm{e}^{\left(x-\frac{1}{2}\right)t}}{\mathrm{e}^{t}+1} = \sum\limits_{l=0}^\infty\frac{\left(x-\frac12\right)^l}{l!}t^l
+\]</div>
+<p>步骤（b）中，我们设 <span class="arithmatex">\(2k+l=n\)</span>。步骤三是由于二项式系数的性质：<span class="arithmatex">\((n-2k)!\,(2k)! = \frac{n!}{\binom{n}{2k}}\)</span>。其中 <span class="arithmatex">\(\lfloor n/2\rfloor\)</span> 表示不超过 <span class="arithmatex">\(n/2\)</span> 的最大整数。比较 (1) 和 (6) 得到 Euler 多项式的代数（显明）表达式。</p>
+<h2 id="2-euler">2. Euler 多项式的递推公式</h2>
+<p>先给出结论：</p>
+<div class="arithmatex">\[
+E_{0}=1,\qquad
+\sum_{l=0}^{k}(-1)^{l}\binom{2k}{2l}E_{l}=0
+\quad(k\ge1).
+\tag{7}
+\]</div>
+<p>证明：将公式 (2) 中的 <span class="arithmatex">\(t/2\)</span> 用 <span class="arithmatex">\(t\)</span> 替换，得到：</p>
+<div class="arithmatex">\[
+\frac{2e^{t}}{e^{2t}+1}
+=\frac{2e^{t}e^{-t}}{(e^{2t}+1)e^{-t}}
+=\sum_{l=0}^{\infty}\frac{(-1)^{l}E_{l}}{(2l)!}(t)^{2l}
+\]</div>
+<div class="arithmatex">\[
+\Longrightarrow\;
+\frac{e^{t}+e^{-t}}{2}\;\frac{2}{e^{t}+e^{-t}}
+=\frac{e^{t}+e^{-t}}{2}\sum_{l=0}^{\infty}\frac{(-1)^{l}E_{l}}{(2l)!}(t)^{2l}
+\]</div>
+<div class="arithmatex">\[
+\overset{(a)}{\Longrightarrow}\;
+1
+=\sum_{r=0}^{\infty}\frac{t^{2r}}{(2r)!}
+\;\cdot\;\sum_{l=0}^{\infty}\frac{(-1)^{l}E_{l}}{(2l)!}t^{2l}
+\]</div>
+<div class="arithmatex">\[
+\overset{(b)}{\Longrightarrow}\;
+1
+=\sum_{k=0}^{\infty}\frac{t^{2k}}{(2k)!}
+\sum_{l=0}^{k}(-1)^{l}\frac{E_{l}(2k)!}{(2l)!\,(2k-2l)!}
+\]</div>
+<div class="arithmatex">\[
+\overset{(c)}{\Longrightarrow}\;
+1
+=\sum_{k=0}^{\infty}\frac{t^{2k}}{(2k)!}
+\sum_{l=0}^{k}(-1)^{l}\binom{2k}{2l}E_{l}.
+\tag{8}
+\]</div>
+<p>步骤 (a) 是因为 <span class="arithmatex">\(e^{x}\)</span> 和 <span class="arithmatex">\(e^{-x}\)</span> 在 <span class="arithmatex">\(x=0\)</span> 的泰勒展开：</p>
+<div class="arithmatex">\[
+e^{x}=\sum_{l=0}^{\infty}\frac{x^{l}}{l!},
+\tag{9}
+\]</div>
+<div class="arithmatex">\[
+e^{-x}=\sum_{l=0}^{\infty}(-1)^{l}\frac{x^{l}}{l!},
+\tag{10}
+\]</div>
+<div class="arithmatex">\[
+\frac{e^{x}+e^{-x}}{2}
+=\sum_{n=0}^{\infty}\frac{x^{2n}}{(2n)!}.
+\tag{11}
+\]</div>
+<p>步骤 (b) 是由于设了 <span class="arithmatex">\(2r+2l=2k\)</span>。步骤 (c) 是由于 <span class="arithmatex">\(\binom{2k}{2l}=\frac{(2k)!}{(2l)!\,(2k-2l)!}\)</span>。至此我们可以通过比较 (2) 和 (6) 的右边得到递推公式。</p>
+<h2 id="3-euler">3. Euler多项式的微商</h2>
+<p>我们可以利用 (5) 求解 Euler 多项式的微商。</p>
+<p>recall (5)：</p>
+<div class="arithmatex">\[
+E_{n}(x)
+=\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^{k}\frac{E_{k}}{2^{2k}}
+\binom{n}{2k}\Bigl(x-\tfrac12\Bigr)^{n-2k}.
+\]</div>
+<div class="arithmatex">\[
+\frac{\mathrm{d}^{p}}{\mathrm{d}x^{p}}E_{n}(x)
+=\sum_{k=0}^{\lfloor n/2\rfloor}(-1)^{k}\binom{n}{2k}
+(n-2k)(n-2k-1)\cdots(n-2k-p+1)\frac{E_{k}}{2^{2k}}
+\Bigl(x-\tfrac12\Bigr)^{n-2k-p}
+\]</div>
+<div class="arithmatex">\[
+\overset{(a)}{=}
+\sum_{k=0}^{\lfloor(n-p)/2\rfloor}(-1)^{k}\binom{n-p}{2k}
+\,n(n-1)\cdots(n-p+1)\,\frac{E_{k}}{2^{2k}}
+\Bigl(x-\tfrac12\Bigr)^{n-2k-p}
+\]</div>
+<div class="arithmatex">\[
+\overset{(b)}{=}
+\frac{n!}{(n-p)!}
+\sum_{k=0}^{\lfloor(n-p)/2\rfloor}(-1)^{k}\binom{n-p}{2k}\frac{E_{k}}{2^{2k}}
+\Bigl(x-\tfrac12\Bigr)^{n-2k-p}
+=\frac{n!}{(n-p)!}E_{n-p}(x).
+\tag{12}
+\]</div>
+<p>步骤 (a) 和 (b) 都应用了二项式系数的性质。</p>
+<h2 id="4">4. 均值公式</h2>
+<div class="arithmatex">\[
+E_{n}(x+1)+E_{n}(x)=2x^{n}
+\tag{13}
+\]</div>
+<p>证明：recall 公式 (1)：</p>
+<div class="arithmatex">\[
+\frac{2e^{xt}}{e^{t}+1}
+=\sum_{n=0}^{\infty}\frac{t^{n}}{n!}E_{n}(x).
+\]</div>
+<p>当 <span class="arithmatex">\(x=x+1\)</span> 时，</p>
+<div class="arithmatex">\[
+\frac{2e^{(x+1)t}}{e^{t}+1}
+=\sum_{n=0}^{\infty}\frac{t^{n}}{n!}E_{n}(x+1)
+\]</div>
+<div class="arithmatex">\[
+\Longrightarrow\;
+\frac{2e^{(x+1)t}+2e^{xt}-2e^{xt}}{e^{t}+1}
+=2e^{xt}-\frac{2e^{xt}}{e^{t}+1}
+\]</div>
+<div class="arithmatex">\[
+\overset{(a)}{=}\;
+2\sum_{n=0}^{\infty}\frac{t^{n}x^{n}}{n!}
+-\sum_{n=0}^{\infty}\frac{t^{n}}{n!}E_{n}(x)
+=\sum_{n=0}^{\infty}\frac{t^{n}}{n!}E_{n}(x+1)
+\tag{14}
+\]</div>
+<p>步骤 (a) 是由于对 <span class="arithmatex">\(2e^{xt}\)</span> 进行了麦克劳林级数展开，<span class="arithmatex">\(2e^{xt}=2\sum_{n=0}^{\infty}\tfrac{t^{n}x^{n}}{n!}\)</span>。(a) 第二项利用了公式 (1)。通过比较最后一行等式，可以得到最终的均值公式。</p>
+<h2 id="5">5. 互余宗量关系</h2>
+<div class="arithmatex">\[
+E_{n}(1-x)=(-1)^{n}E_{n}(x)
+\tag{15}
+\]</div>
+<p>证明：recall 公式 (1)：</p>
+<div class="arithmatex">\[
+\frac{2e^{xt}}{e^{t}+1}
+=\sum_{n=0}^{\infty}\frac{t^{n}}{n!}E_{n}(x).
+\]</div>
+<p>当 <span class="arithmatex">\(x=1-x\)</span> 时，</p>
+<div class="arithmatex">\[
+\frac{2e^{(1-x)t}}{e^{t}+1}
+=\sum_{n=0}^{\infty}\frac{t^{n}}{n!}E_{n}(1-x)
+\;\Longrightarrow\;
+\frac{2e^{-t}e^{(1-x)t}}{e^{-t}(e^{t}+1)}
+=\frac{2e^{-xt}}{1+e^{-t}}
+=\sum_{n=0}^{\infty}\frac{(-t)^{n}}{n!}E_{n}(x)
+=\sum_{n=0}^{\infty}\frac{t^{n}}{n!}E_{n}(1-x).
+\]</div>
+<p>比较等式可得互余宗量关系。</p>
+<h2 id="6">6. 求和公式</h2>
+<div class="arithmatex">\[
+\sum_{x=1}^{m}(-1)^{x}x^{n}
+=\tfrac12\sum_{x=1}^{m}(-1)^{x}\bigl[E_{n}(x+1)+E_{n}(x)\bigr]
+=\tfrac12\bigl[(-1)^{m}E_{n}(m+1)-E_{n}(1)\bigr]. 
+\tag{16}
+\]</div>
+<p>证明：recall 均值公式 (13)：  </p>
+<div class="arithmatex">\[
+E_{n}(x+1)+E_{n}(x)=2x^{n},
+\]</div>
+<p>由 (13) 式做简单的运算就能得到。</p>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../js/main.js"></script>
+<script src="../../<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+    }
+  };
+</script>
+"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/gitbook.min.js"></script>
+<script src="../../js/theme.min.js"></script>
+</body>
+</html>
