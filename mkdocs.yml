@@ -1,0 +1,6 @@
+site_name: My Docs
+site_url: https://github.com/Shumin-Wang/special_function.git
+nav:
+  - Home: index.md
+
+theme: gitbook
