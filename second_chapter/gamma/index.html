@@ -105,7 +105,338 @@ Theme by GitBook
 
 
 
-
+<p>Gamma函数是阶乘函数在实数和复数域上的扩展。n为正整数时：</p>
+<div class="arithmatex">\[
+\Gamma(n) = (n-1)! \tag{1}
+\]</div>
+<p>定义在除去非正整数的整个复数域上的Gamma函数为：</p>
+<div class="arithmatex">\[
+\Gamma(z) = \int_{0}^{\infty} t^{z-1} e^{-t}\,\mathrm{d}t,\quad \Re(z)&gt;0.
+\tag{2}
+\]</div>
+<hr />
+<h1 id="gamma">一、Gamma函数的不同表达形式</h1>
+<h2 id="1">1. 欧拉无穷乘积公式⁺</h2>
+<p>首先根据自然数的定义（见高数极限部分）得到：</p>
+<div class="arithmatex">\[
+e^{-t} = \lim_{n\to\infty}\Bigl(1 - \frac{t}{n}\Bigr)^{n}
+\tag{3}
+\]</div>
+<p>将公式 (1) 带入 Gamma 的积分函数中得到：</p>
+<div class="arithmatex">\[
+\Gamma(z) = \lim_{n\to\infty}P_n(z)
+= \lim_{n\to\infty}\int_{0}^{n}\Bigl(1 - \frac{t}{n}\Bigr)^{n}t^{z-1}\,\mathrm{d}t
+\tag{4}
+\]</div>
+<p>求解公式 (2) 中的积分：  </p>
+<p>1) 将 <span class="arithmatex">\(t = n\tau\)</span>，并采用分部积分法得：</p>
+<div class="arithmatex">\[
+P_n(z)
+= \int_{0}^{n}\Bigl(1 - \frac{t}{n}\Bigr)^{n}t^{z-1}\,\mathrm{d}t
+= \int_{0}^{1}(1-\tau)^{n}(n\tau)^{z-1}\,n\,\mathrm{d}\tau
+= n^{z}\int_{0}^{1}(1-\tau)^{n}\tau^{z-1}\,\mathrm{d}\tau
+\tag{5}
+\]</div>
+<p>多次采用分部积分后：</p>
+<div class="arithmatex">\[
+P_n(z)
+=\frac{n^{z}n(n-1)\cdots2\cdot1}{z(z+1)\cdots(z+n-1)}
+\int_{0}^{1}\tau^{z+n-1}\,\mathrm{d}\tau
+=\frac{1\cdot2\cdots n}{z(z+1)\cdots(z+n)}\,n^{z},
+\]</div>
+<p>得到一个新的 Gamma 函数表达式：</p>
+<div class="arithmatex">\[
+\Gamma(z)
+=\lim_{n\to\infty}\frac{1\cdot2\cdots n}{z(z+1)\cdots(z+n)}\,n^{z}
+=\lim_{n\to\infty}n!\,n^{z}\prod_{k=0}^{n}(z+k)^{-1}
+\tag{6}
+\]</div>
+<p>根据数论基础知识可以将 <span class="arithmatex">\(n\)</span> 表示为</p>
+<div class="arithmatex">\[
+n = \prod_{m=1}^{n-1}\Bigl(1 + \frac{1}{m}\Bigr),
+\]</div>
+<p>所以可以得到：</p>
+<div class="arithmatex">\[
+n^{z} = \prod_{m=1}^{n-1}\Bigl(1 + \frac{z}{m}\Bigr)^{z},\quad
+\frac{1\cdot2\cdots n}{z(z+1)\cdots(z+n)}
+=\frac{1}{z}\prod_{m=1}^{n-1}\Bigl(1 + \frac{z}{m}\Bigr)^{-1}.
+\tag{7}
+\]</div>
+<p>结合上述两式得到：</p>
+<div class="arithmatex">\[
+\Gamma(z)
+=\frac{1}{z}\prod_{n=1}^{\infty}\Bigl\{\bigl(1+\tfrac{z}{n}\bigr)^{-1}\bigl(1+\tfrac{1}{n}\bigr)^{z}\Bigr\}.
+\tag{8}
+\]</div>
+<h2 id="2-weierstrass">2. 外氏 (Weierstrass) 无穷乘积</h2>
+<p>将 <span class="arithmatex">\(n^z\)</span> 用另一种方法表示可写为：</p>
+<div class="arithmatex">\[
+\exp\bigl(z\ln n\bigr)
+=\exp\!\Bigl[z\bigl(\ln n-\sum_{m=1}^n\frac1m\bigr)\Bigr]
+\;\prod_{m=1}^{n}e^{z/m}.
+\tag{9}
+\]</div>
+<p>结合上式和公式 (7) 得到：</p>
+<div class="arithmatex">\[
+\Gamma(z)
+=\lim_{n\to\infty}P_n(z)
+=\frac{e^{-\gamma z}}{z}
+\prod_{n=1}^{\infty}\bigl(1+\tfrac{z}{n}\bigr)^{-1}e^{z/n}.
+\tag{10}
+\]</div>
+<p>其中 <span class="arithmatex">\(\gamma\)</span> 是欧拉–马歇罗尼常数，</p>
+<div class="arithmatex">\[
+\gamma=\lim_{n\to\infty}\Bigl(\sum_{m=1}^n\frac1m-\ln n\Bigr)
+\approx0.57721566\ldots
+\]</div>
+<h2 id="3">3. 递推公式</h2>
+<div class="arithmatex">\[
+\Gamma(n+1)=n\,\Gamma(n)
+\tag{11}
+\]</div>
+<p>推导：</p>
+<div class="arithmatex">\[
+\Gamma(z)
+=\int_{0}^{\infty}t^{z-1}e^{-t}\,\mathrm{d}t
+=-t^{z-1}e^{-t}\Big|_{0}^{\infty}
++z\int_{0}^{\infty}t^{z-2}e^{-t}\,\mathrm{d}t
+\tag{12}
+\]</div>
+<p>其中第一项为 0，因此</p>
+<div class="arithmatex">\[
+\Gamma(z)=z\,\Gamma(z-1).
+\]</div>
+<h2 id="4-gamma">4. 广义 Gamma 函数积分公式</h2>
+<div class="arithmatex">\[
+\frac{\Gamma(\alpha)}{\lambda^{\alpha}}
+=\int_{0}^{\infty}x^{\alpha-1}e^{-\lambda x}\,\mathrm{d}x
+\tag{13}
+\]</div>
+<p>证明：给定<span class="arithmatex">\(I=\int_0^\infty x^{\alpha-1}e^{\lambda x} dx\)</span>，将<span class="arithmatex">\(u=\lambda x\)</span>替换得到：</p>
+<div class="arithmatex">\[
+I
+=\int_{0}^{\infty}\bigl(\tfrac{u}{\lambda}\bigr)^{\alpha-1}e^{-u}\,
+\frac{\mathrm{d}u}{\lambda}
+=\frac{1}{\lambda^{\alpha}}\int_{0}^{\infty}u^{\alpha-1}e^{-u}\,\mathrm{d}u
+=\frac{1}{\lambda^{\alpha}}\Gamma(\alpha).
+\tag{14}
+\]</div>
+<h2 id="betagamma">二、Beta函数及其与Gamma函数的关系</h2>
+<h3 id="1-beta">1. Beta函数的定义</h3>
+<p>B函数，又称为贝塔函数或第一类欧拉积分，是一个特殊函数由下式定义：</p>
+<div class="arithmatex">\[
+B(x,y)=\int_{0}^{1}t^{x-1}(1-t)^{y-1}\,\mathrm{d}t
+\tag{15}
+\]</div>
+<p>当 <span class="arithmatex">\(x,y\)</span> 是正整数的时候，我们可以从伽马函数定义得到如下式子：</p>
+<div class="arithmatex">\[
+B(x,y)=\frac{(x-1)!\,(y-1)!}{(x+y-1)!}
+\tag{16}
+\]</div>
+<h3 id="2-betagamma">2. Beta函数和Gamma函数的关系</h3>
+<div class="arithmatex">\[
+B(x,y)=\frac{\Gamma(x)\,\Gamma(y)}{\Gamma(x+y)}
+\tag{17}
+\]</div>
+<p>证明之前先给出拉普拉斯变换<em>和逆变换</em>，以及拉普拉斯卷积*的相关公式：</p>
+<ul>
+<li>拉普拉斯变换：<span class="arithmatex">\(F(s)=\int_{0}^{\infty}f(t)e^{-st}\,\mathrm{d}t.\)</span></li>
+<li>拉普拉斯逆变换：<span class="arithmatex">\(f(t)=\frac{1}{2\pi j}\int_{\beta-j\infty}^{\beta+j\infty}F(s)e^{st}\,\mathrm{d}s.\)</span></li>
+<li>拉普拉斯卷积：<span class="arithmatex">\((f_1*f_2)(t)=\int_{0}^{t}f_1(\tau)\,f_2(t-\tau)\,\mathrm{d}\tau.\)</span></li>
+<li>卷积性质：<span class="arithmatex">\(\mathcal{L}[f_1*f_2]=F_1(s)\,F_2(s),\quad
+  \mathcal{L}^{-1}[F_1(s)\,F_2(s)]=f_1*f_2.\)</span></li>
+</ul>
+<p><strong>证明</strong></p>
+<p>1) 求 <span class="arithmatex">\(x^{\alpha-1}\)</span> 的拉普拉斯变换：</p>
+<div class="arithmatex">\[
+\mathcal{L}\bigl[x^{\alpha-1}\bigr]
+=\int_{0}^{\infty}x^{\alpha-1}e^{-sx}\,\mathrm{d}x
+=s^{-\alpha}\int_{0}^{\infty}y^{\alpha-1}e^{-y}\,\mathrm{d}y
+=s^{-\alpha}\Gamma(\alpha),
+\tag{18}
+\]</div>
+<p>这里做了代换 <span class="arithmatex">\(y=sx\)</span>。</p>
+<p>同理可以得到</p>
+<div class="arithmatex">\[
+\mathcal{L}\bigl[x^{\beta-1}\bigr]
+=s^{-\beta}\Gamma(\beta).
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\frac{\Gamma(\alpha)\,\Gamma(\beta)}{s^{\alpha+\beta}}
+=\mathcal{L}\bigl[x^{\alpha-1}\bigr]\,
+\mathcal{L}\bigl[x^{\beta-1}\bigr].
+\tag{21}
+\]</div>
+<p>对等式两边求逆变换：</p>
+<div class="arithmatex">\[
+\mathcal{L}^{-1}\!\Bigl[\frac{\Gamma(\alpha)\,\Gamma(\beta)}{s^{\alpha+\beta}}\Bigr]
+=\mathcal{L}^{-1}\bigl[\mathcal{L}[x^{\alpha-1}]\,
+\mathcal{L}[x^{\beta-1}]\bigr].
+\tag{22}
+\]</div>
+<p>右边通过卷积定理可得：</p>
+<div class="arithmatex">\[
+\mathcal{L}^{-1}\Bigl[\frac{\Gamma(\alpha)\,\Gamma(\beta)}{s^{\alpha+\beta}}\Bigr]
+=\int_{0}^{x}(x-y)^{\alpha-1}y^{\beta-1}\,\mathrm{d}y
+=x^{\alpha+\beta-1}
+\int_{0}^{1}(1-u)^{\alpha-1}u^{\beta-1}\,\mathrm{d}u.
+\tag{23}
+\]</div>
+<p>上式中最后一步令 <span class="arithmatex">\(y=ux\)</span> 得到。  </p>
+<p>另一方面，</p>
+<div class="arithmatex">\[
+\mathcal{L}\bigl[x^{\alpha+\beta-1}\bigr]
+=s^{-(\alpha+\beta)}\Gamma(\alpha+\beta).
+\tag{24}
+\]</div>
+<p>比较 (21)–(24) 两式，整理得</p>
+<div class="arithmatex">\[
+\frac{\Gamma(\alpha)\,\Gamma(\beta)}{\Gamma(\alpha+\beta)}
+=\int_{0}^{1}(1-u)^{\alpha-1}u^{\beta-1}\,\mathrm{d}u
+=B(\alpha,\beta).
+\tag{25}
+\]</div>
+<p>根据 Beta函数的定义，即得</p>
+<div class="arithmatex">\[
+B(x,y)=\frac{\Gamma(x)\,\Gamma(y)}{\Gamma(x+y)}.
+\]</div>
+<h2 id="_1">三、欧拉反射公式（余元公式）</h2>
+<div class="arithmatex">\[
+\Gamma(z)\,\Gamma(1-z)=\frac{\pi}{\sin(\pi z)}
+\tag{26}
+\]</div>
+<h3 id="1_1">1. 级数证明法</h3>
+<p><strong>引理 1</strong>：对于 <span class="arithmatex">\(0&lt;p&lt;1\)</span>，有</p>
+<div class="arithmatex">\[
+\int_{0}^{\infty}\frac{y^{p-1}}{1+y}\,\mathrm{d}y
+=\frac{1}{p}
++\sum_{k=1}^{\infty}(-1)^k\Bigl(\frac{1}{p+k}+\frac{1}{p-k}\Bigr).
+\tag{27}
+\]</div>
+<p><strong>证明</strong>：设</p>
+<div class="arithmatex">\[
+I=\int_{0}^{\infty}\frac{y^{p-1}}{1+y}\,\mathrm{d}y
+=\int_{0}^{1}\frac{y^{p-1}}{1+y}\,\mathrm{d}y
++\int_{1}^{\infty}\frac{y^{p-1}}{1+y}\,\mathrm{d}y
+=I_1+I_2.
+\tag{28}
+\]</div>
+<p>1) 先看</p>
+<div class="arithmatex">\[
+I_1=\int_{0}^{1}\frac{y^{p-1}}{1+y}\,\mathrm{d}y.
+\]</div>
+<p>在 <span class="arithmatex">\([0,1]\)</span> 上将 <span class="arithmatex">\(\frac1{1+y}\)</span> 展开为级数</p>
+<div class="arithmatex">\[
+\frac1{1+y}=\sum_{k=0}^{\infty}(-1)^k y^k,
+\]</div>
+<p>代入得</p>
+<div class="arithmatex">\[
+I_1
+=\int_{0}^{1}y^{p-1}\sum_{k=0}^{\infty}(-1)^k y^k\,\mathrm{d}y
+=\sum_{k=0}^{\infty}(-1)^k\int_{0}^{1}y^{k+p-1}\,\mathrm{d}y
+=\sum_{k=0}^{\infty}\frac{(-1)^k}{k+p}.
+\tag{30}
+\]</div>
+<p>2) 再看</p>
+<div class="arithmatex">\[
+I_2=\int_{1}^{\infty}\frac{y^{p-1}}{1+y}\,\mathrm{d}y.
+\]</div>
+<p>令 <span class="arithmatex">\(y=1/t\)</span>，则</p>
+<div class="arithmatex">\[
+I_2
+=\int_{0}^{1}\frac{(1/t)^{p-1}}{1+1/t}\,\frac{\mathrm{d}t}{t^2}
+=-\int_{0}^{1}\frac{t^{1-p}}{1+1/t}\,\mathrm{d}t
+=-\int_{0}^{1}\frac{t^{1-p}}{t+1}\,\mathrm{d}t.
+\]</div>
+<p>同样将 <span class="arithmatex">\(\frac1{1+t}=\sum_{k=0}^\infty(-1)^k t^k\)</span> 展开，得</p>
+<div class="arithmatex">\[
+I_2
+=-\sum_{k=0}^\infty(-1)^k\int_{0}^{1}t^{k-p+1}\,\mathrm{d}t
+=-\sum_{k=0}^\infty\frac{(-1)^k}{k-p+1}
+=\sum_{k=1}^\infty\frac{(-1)^k}{k-p}.
+\tag{32}
+\]</div>
+<p>将 <span class="arithmatex">\(I_1,I_2\)</span> 带入 (28)，即得引理 1。</p>
+<p><strong>引理 2</strong>：若 <span class="arithmatex">\(0&lt;p&lt;1\)</span>，则</p>
+<div class="arithmatex">\[
+\sum_{k=1}^{\infty}(-1)^k\Bigl(\frac{1}{p+k}+\frac{1}{p-k}\Bigr)
+=\frac{\sin(\pi p)-\pi p}{p\sin(\pi p)}.
+\tag{33}
+\]</div>
+<p><em>证明略（可用傅里叶级数展开 <span class="arithmatex">\(\cos(px)\)</span> 得出）。</em></p>
+<p><strong>由引理 1 和引理 2</strong>，对 <span class="arithmatex">\(I\)</span> 有</p>
+<div class="arithmatex">\[
+I
+=\frac{1}{p}
++\sum_{k=1}^{\infty}(-1)^k\Bigl(\frac{1}{p+k}+\frac{1}{p-k}\Bigr)
+=\frac{1}{p}+\frac{\sin(\pi p)-\pi p}{p\sin(\pi p)}
+=\frac{1}{p}-\frac{\pi}{\sin(\pi p)}+\frac{1}{\sin(\pi p)}
+=\frac{\pi}{\sin(\pi p)}.
+\]</div>
+<p>另一方面，由 Beta 函数定义和 Gamma 函数的关系，</p>
+<div class="arithmatex">\[
+I
+=\int_{0}^{\infty}\frac{y^{p-1}}{1+y}\,\mathrm{d}y
+=B(p,1-p)
+=\frac{\Gamma(p)\,\Gamma(1-p)}{\Gamma(1)}
+=\Gamma(p)\,\Gamma(1-p).
+\]</div>
+<p>故</p>
+<div class="arithmatex">\[
+\Gamma(p)\,\Gamma(1-p)=\frac{\pi}{\sin(\pi p)},
+\]</div>
+<p>即取 <span class="arithmatex">\(p=z\)</span> 就得到反射公式 (26)。</p>
+<h2 id="_2">四、乘法定理</h2>
+<p>先给结果：</p>
+<div class="arithmatex">\[
+\Gamma(z)\,\Gamma\Bigl(z+\frac{1}{m}\Bigr)\,\Gamma\Bigl(z+\frac{2}{m}\Bigr)\,\cdots\,\Gamma\Bigl(z+\frac{m-1}{m}\Bigr)
+=(2\pi)^{\frac{m-1}{2}}\,m^{\frac{1}{2}-mz}\,\Gamma(mz).
+\tag{39}
+\]</div>
+<h1 id="_3">五、常见的其他性质</h1>
+<ol>
+<li>与高斯积分的关系  </li>
+</ol>
+<p>$$
+   \int_{-\infty}^{\infty}e^{-x^2}\,\mathrm{d}x=\sqrt{\pi}.
+   $$</p>
+<ol>
+<li>Stirling 公式⁺（用来近似 <span class="arithmatex">\(n\)</span> 阶乘）  </li>
+</ol>
+<p>$$
+   n!\approx\sqrt{2\pi n}\Bigl(\frac{n}{e}\Bigr)^{n},
+   $$</p>
+<p>$$
+   n!=\sqrt{2\pi n}\Bigl(\frac{n}{e}\Bigr)^{n}\bigl[1+O(1/n)\bigr].
+   $$</p>
+<ol>
+<li>
+<p>Mellin 变换  </p>
+</li>
+<li>
+<p>直接变换：<span class="arithmatex">\(\{\mathcal{M}f\}(s)=\varphi(s)=\int_{0}^{\infty}x^{s-1}f(x)\,\mathrm{d}x.\)</span> </p>
+</li>
+<li>
+<p>逆变换：<span class="arithmatex">\(\{\mathcal{M}^{-1}\varphi\}(x)=f(x)
+     =\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}x^{-s}\,\varphi(s)\,\mathrm{d}s.\)</span>  </p>
+</li>
+<li>
+<p>Wallis 公式  </p>
+</li>
+</ol>
+<p>$$
+   \prod_{n=1}^{\infty}\frac{2n}{2n-1}\cdot\frac{2n}{2n+1}
+=\frac{2}{1}\cdot\frac{2}{3}\cdot\frac{4}{3}\cdot\frac{4}{5}\cdot\frac{6}{5}\cdot\frac{6}{7}\cdot\frac{8}{7}\cdot\frac{8}{9}\cdots
+=\frac{\pi}{2}.
+   $$</p>
+<ol>
+<li>Frullani 积分  </li>
+</ol>
+<p>$$
+   \int_{0}^{\infty}\frac{f(a x)-f(b x)}{x}\,\mathrm{d}x
+=\bigl(f(\infty)-f(0)\bigr)\ln\frac{a}{b}.
+   $$</p>
 
 
 </section>
