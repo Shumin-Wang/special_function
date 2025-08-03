@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>双Gamma函数 - 特殊函数</title>
+<title>Zeta函数 - 特殊函数</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
@@ -53,6 +53,20 @@
 <a href="../../first_chapter/orthogonal/" class="">正交多项式</a>
 </li>
 
+<li class="header">一些好用的函数</li>
+
+<li>
+<a href="../../second_chapter/error/" class="">误差函数</a>
+</li>
+
+<li>
+<a href="../../second_chapter/stirling/" class="">斯特林公式</a>
+</li>
+
+<li>
+<a href="../../second_chapter/gaussian_intergral.md" class="">高斯积分</a>
+</li>
+
 <li class="header">Gamma、Beta和Zeta函数</li>
 
 <li>
@@ -60,7 +74,7 @@
 </li>
 
 <li>
-<a href="./" class="active">双Gamma函数</a>
+<a href="../double%20gamma/" class="">双Gamma函数</a>
 </li>
 
 <li>
@@ -68,7 +82,7 @@
 </li>
 
 <li>
-<a href="../zeta/" class="">Zeta函数</a>
+<a href="./" class="active">Zeta函数</a>
 </li>
 
 <li class="divider"></li>
@@ -109,69 +123,7 @@ Theme by GitBook
 
 
 
-<h1 id="gamma">双Gamma函数</h1>
-<p>双伽玛函数是伽玛函数的对数导数，定义为</p>
-<div class="arithmatex">\[
-\psi(x)=\frac{\mathrm{d}}{\mathrm{d}x}\ln\Gamma(x)
-=\frac{\Gamma'(x)}{\Gamma(x)}.
-\tag{1}
-\]</div>
-<h2 id="1-gamma">1. 双Gamma函数的正整数表达式</h2>
-<p>当 <span class="arithmatex">\(n\)</span> 为正整数时，</p>
-<div class="arithmatex">\[
-\psi(n)
-=\frac{\Gamma'(n)}{\Gamma(n)}
-=\frac{(n-1)!\bigl(-\gamma+\sum_{k=1}^{n-1}\tfrac1k\bigr)}{(n-1)!}
-=\sum_{k=1}^{n-1}\frac1k-\gamma
-=H_{n-1}-\gamma.
-\tag{2}
-\]</div>
-<p>其中 <span class="arithmatex">\(H_{n-1}=\sum_{k=1}^{n-1}\tfrac1k\)</span> 是 <span class="arithmatex">\((n-1)\)</span> 阶调和数，<span class="arithmatex">\(\gamma\)</span> 为欧拉–马斯刻若尼常数。</p>
-<h2 id="2">2. 调和数的整数积分表示</h2>
-<p>由于</p>
-<div class="arithmatex">\[
-H_n=\sum_{k=1}^n\frac1k,
-\]</div>
-<p>而</p>
-<div class="arithmatex">\[
-\frac1k=\int_0^1 t^{k-1}\,\mathrm{d}t,\quad k\in\mathbb{N},
-\]</div>
-<p>故</p>
-<div class="arithmatex">\[
-H_n
-=\sum_{k=1}^n\int_0^1 t^{k-1}\,\mathrm{d}t
-=\int_0^1\sum_{k=1}^n t^{k-1}\,\mathrm{d}t
-=\int_0^1\frac{1-t^n}{1-t}\,\mathrm{d}t.
-\tag{13}
-\]</div>
-<p>从而对任意 <span class="arithmatex">\(s&gt;-1\)</span> 有</p>
-<div class="arithmatex">\[
-\psi(s+1)=-\gamma+\int_0^1\frac{1-x^s}{1-x}\,\mathrm{d}x.
-\tag{14}
-\]</div>
-<h2 id="3">3. 积分表示法</h2>
-<div class="arithmatex">\[
-\psi(x)
-=\int_0^\infty\Bigl(\frac{e^{-t}}{t}-\frac{e^{-xt}}{1-e^{-t}}\Bigr)\,\mathrm{d}t.
-\tag{15}
-\]</div>
-<h2 id="4">4. 反射公式</h2>
-<div class="arithmatex">\[
-\psi(1-x)-\psi(x)=\pi\,\cot(\pi x).
-\tag{22}
-\]</div>
-<h2 id="5">5. 递推关系</h2>
-<div class="arithmatex">\[
-\psi(x+1)=\psi(x)+\frac1x.
-\tag{25}
-\]</div>
-<h2 id="6">6. 半整数值</h2>
-<p>当 <span class="arithmatex">\(n\in\mathbb{N}\)</span> 时，</p>
-<div class="arithmatex">\[
-\psi\Bigl(n+\tfrac12\Bigr)
-=-\gamma-2\ln2+\sum_{k=1}^n\frac{2}{2k-1}.
-\tag{26}
-\]</div>
+
 
 
 </section>
