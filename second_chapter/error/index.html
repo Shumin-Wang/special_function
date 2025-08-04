@@ -123,7 +123,193 @@ Theme by GitBook
 
 
 
-
+<p>在统计学里，我们习惯谈“正态分布”、“置信区间”、“<span class="arithmatex">\(±1.96σ\)</span>”；在物理学里，我们操纵“热传导方程”“扩散模型”；在通信工程里，我们研究“高斯噪声”“误码率”。看似不相干的领域，却都离不开一个同名的特殊函数——<strong>误差函数（error function, <span class="arithmatex">\(\mathrm{erf}\)</span>）</strong>。它本质上就是钟形曲线下从某点到无穷远的面积积累，只不过这个积分没有初等原函数——于是我们给它取了个“误差函数”的名字。误差函数在概率论，统计学以及偏微分方程中都有广泛的应用。它的定义如下：</p>
+<div class="arithmatex">\[
+\operatorname{erf}(x)
+=\frac{1}{\sqrt{\pi}}
+\int_{-x}^{x}e^{-t^{2}}\,\mathrm{d}t
+=\frac{2}{\sqrt{\pi}}
+\int_{0}^{x}e^{-t^{2}}\,\mathrm{d}t.
+\]</div>
+<p>误差函数有很多常见的性质，下面逐个介绍并证明</p>
+<h2 id="1mathrmerf-zmathrmrefz">1、奇偶性：<span class="arithmatex">\(\mathrm{erf}(-z)=\mathrm{ref}(z)\)</span></h2>
+<h2 id="2">2、在原点与无穷远的取值</h2>
+<h3 id="1mathrmref00">（1）<span class="arithmatex">\(\mathrm{ref}(0)=0\)</span></h3>
+<h3 id="2limlimits_z-rightarrow-infin-mathrmrefz1limlimits_z-rightarrow-infin-mathrmrefz-1">（2）在原点与无穷远的取值<span class="arithmatex">\(\lim\limits_{z \rightarrow \infin} \mathrm{ref}(z)=1\)</span>，<span class="arithmatex">\(\lim\limits_{z \rightarrow -\infin} \mathrm{ref}(z)=-1\)</span>。</h3>
+<h3 id="3">（3）导数和微分方程</h3>
+<p><strong>性质：</strong>  </p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d}z} \mathrm{erf}(z)
+=\frac{2}{\sqrt\pi}\,e^{-z^2}.
+\]</div>
+<p><strong>证明：</strong><br />
+直接对定义积分应用微积分基本定理：</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d}z}\Bigl[\tfrac{2}{\sqrt\pi}\!\int_{0}^{z}e^{-t^2}\,\mathrm{d}t\Bigr]
+=\tfrac{2}{\sqrt\pi}\,e^{-z^2}.
+\]</div>
+<p>由此可见 <span class="arithmatex">\(\mathrm{erf}(z)\)</span> 满足一阶常微分方程</p>
+<div class="arithmatex">\[
+y'(z)=\frac{2}{\sqrt\pi}\,e^{-z^2},\quad y(0)=0.
+\]</div>
+<h3 id="4maclaurin">（4）幂级数展开（Maclaurin展开）</h3>
+<p>首先需要求<span class="arithmatex">\(e^{-t^2}\)</span>的麦克劳林展开：</p>
+<div class="arithmatex">\[
+e^{-t^2}=\sum\limits_{n=0}^{\infin}\frac{(-1)^n}{n!}t^{2n}
+\]</div>
+<p>将其代入到积分并逐项积分：</p>
+<div class="arithmatex">\[
+\mathrm{erf}(z)=\frac{2}{\sqrt{\pi}}\sum\limits_{n=0}^{\infin}\frac{(-1)^n}{n!}\int_{0}^{z}t^{2n}=\frac{2}{\sqrt{\pi}}\sum\limits_{n=0}^{\infin}\frac{(-1)^n}{n!}\frac{z^{2n+1}}{2n+1}
+\]</div>
+<p>即：</p>
+<div class="arithmatex">\[
+\mathrm{erf}(z)
+= \frac{2}{\sqrt{\pi}}
+\Bigl(
+  z
+  - \frac{z^3}{3}
+  + \frac{z^5}{10}
+  - \frac{z^7}{42}
+  + \cdots
+\Bigr).
+\]</div>
+<h3 id="5">（5）互补误差函数</h3>
+<p>定义：</p>
+<div class="arithmatex">\[
+\mathrm{erfc}(z)=1-\mathrm{erf}(z)=\int_{x}^{\infin}e^{-t^{2}}\mathrm{d}t.
+\]</div>
+<p>显然有：</p>
+<div class="arithmatex">\[
+\mathrm{erfc}(z)+\mathrm{erf}(z)=1
+\]</div>
+<p>且：</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d}z}\bigl(\operatorname{erfc}(z)\bigr)
+= -\frac{2}{\sqrt{\pi}}\,e^{-z^2}.
+\]</div>
+<p>证明：</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d}z}\mathrm{erfc}(z)=\frac{\mathrm{d}}{\mathrm{d}z}(1-\mathrm{erf}(z))
+= -\frac{2}{\sqrt{\pi}}\,e^{-z^2}
+\]</div>
+<h3 id="6">（6）误差函数的不定积分</h3>
+<div class="arithmatex">\[
+\int{\mathrm{erf}}(z)dz=z\ \mathrm{erf}(z)+\frac{e^{-z^2}}{\sqrt{\pi}}+C
+\]</div>
+<p>推导：利用不定积分的分部积分法：</p>
+<div class="arithmatex">\[
+\int{\mathrm{erf}}(z)dz
+=z\ \mathrm{erf}(z)- \int{z}\mathrm{d}(\mathrm{erf(z)})
+\\=z\ \mathrm{erf}(z)- \int{z}\frac{2}{\sqrt{\pi}}\,e^{-z^2}dz
+\\=z\ \mathrm{erf}(z) + \frac{e^{-z^2}}{\sqrt{\pi}}+C
+\]</div>
+<h3 id="7">（7）逆误差函数</h3>
+<p>逆误差函数可由麦克劳林级数表示：</p>
+<div class="arithmatex">\[
+\mathrm{erf}^{-1}(z)
+=\sum_{k=0}^{\infty}\frac{c_{k}}{2k+1}\Bigl(\tfrac{\sqrt\pi}{2}z\Bigr)^{2k+1},
+\]</div>
+<p>其中 <span class="arithmatex">\(c_{0}=1\)</span>，</p>
+<div class="arithmatex">\[
+c_{k}
+=\sum_{m=0}^{k-1}\frac{c_{m}\,c_{\,k-1-m}}{(m+1)(2m+1)}
+=\{\,1,\,1,\,\tfrac{7}{6},\,\tfrac{127}{90},\,\tfrac{4369}{2520},\dots\}.
+\]</div>
+<p>即：</p>
+<div class="arithmatex">\[
+\mathrm{erf}^{-1}(z)
+=\tfrac{1}{2}\sqrt\pi\Bigl(
+z+\tfrac{\pi}{12}z^{3}
++\tfrac{7\pi^{2}}{480}z^{5}
++\tfrac{127\pi^{3}}{40320}z^{7}
++\tfrac{4369\pi^{4}}{5806080}z^{9}
++\tfrac{34807\pi^{5}}{182476800}z^{11}
++\cdots\Bigr).
+\]</div>
+<p>推导：（Lagrange inversion theorem/Lagrange-Burmann formula）</p>
+<h3 id="8">（8）互补误差函数的渐近展开</h3>
+<p>误差函数的余补函数 <span class="arithmatex">\(\mathrm{erfc}(x)\)</span> 的渐近展开：</p>
+<div class="arithmatex">\[
+\mathrm{erfc}(x)
+=\frac{e^{-x^2}}{x\sqrt\pi}
+\Bigl[1+\sum_{n=1}^{\infty}(-1)^n\frac{1\cdot3\cdot5\cdots(2n-1)}{(2x^2)^n}\Bigr]
+=\frac{e^{-x^2}}{x\sqrt\pi}\sum_{n=0}^{\infty}(-1)^n\frac{(2n-1)!!}{(2x^2)^n},
+\]</div>
+<p>其中 <span class="arithmatex">\((2n-1)!!=1\cdot3\cdot5\cdots(2n-1)\)</span> 为双阶乘，该级数对有限 <span class="arithmatex">\(x\)</span> 收敛，但对大 <span class="arithmatex">\(x\)</span> 发散。对于 <span class="arithmatex">\(N\in\mathbb{N}\)</span>，有</p>
+<div class="arithmatex">\[
+\mathrm{erfc}(x)
+=\frac{e^{-x^2}}{x\sqrt\pi}
+\sum_{n=0}^{N-1}(-1)^n\frac{(2n-1)!!}{(2x^2)^n}
++R_N(x),
+\]</div>
+<p>其中余项用大 <span class="arithmatex">\(O\)</span> 符号表示为</p>
+<div class="arithmatex">\[
+R_N(x)=O\bigl(x^{-2N+1}e^{-x^2}\bigr)\quad(x\to\infty).
+\]</div>
+<p>余项的精确形式为：</p>
+<div class="arithmatex">\[
+R_N(x)
+:=\frac{(-1)^N}{\sqrt\pi}\,2^{-2N+1}\,\frac{(2N)!}{N!}
+\int_{x}^{\infty}t^{-2N}e^{-t^2}\,\mathrm{d}t.
+\]</div>
+<h5 id="watson-laplace">Watson 引理（Laplace 积分的渐近展开）</h5>
+<p>我们考虑</p>
+<div class="arithmatex">\[
+\int_x^\infty e^{-t^2}\,\mathrm{d}t
+\]</div>
+<p>视作一个 Laplace 型积分，对大 <span class="arithmatex">\(x\)</span> 做渐近展开。步骤如下：</p>
+<ol>
+<li><strong>先平移变量</strong><br />
+   令 <span class="arithmatex">\(t = x + u\)</span>，则</li>
+</ol>
+<p>$$
+   \int_x^\infty e^{-t^2}\,\mathrm{d}t
+= \int_0^\infty e^{-(x+u)^2}\,\mathrm{d}u
+= e^{-x^2}\int_0^\infty e^{-2xu}\,e^{-u^2}\,\mathrm{d}u.
+   $$</p>
+<ol>
+<li><strong>在被积因子里对小 <span class="arithmatex">\(u\)</span> 展开</strong><br />
+   当 <span class="arithmatex">\(x\to+\infty\)</span> 时，主要贡献来自 <span class="arithmatex">\(u=O(1/x)\)</span> 附近，因此可以把 <span class="arithmatex">\(e^{-u^2}\)</span> 展开为幂级数：</li>
+</ol>
+<p>$$
+   e^{-u^2} = \sum_{n=0}^\infty \frac{(-1)^n}{n!}\,u^{2n}.
+   $$</p>
+<p>于是</p>
+<p>$$
+   \int_0^\infty e^{-2xu}\,e^{-u^2}\,\mathrm{d}u
+= \sum_{n=0}^\infty \frac{(-1)^n}{n!}
+  \int_0^\infty u^{2n}\,e^{-2xu}\,\mathrm{d}u.
+   $$</p>
+<ol>
+<li><strong>逐项积分用 Gamma 函数</strong><br />
+   利用</li>
+</ol>
+<p>$$
+   \int_0^\infty u^m e^{-\alpha u}\,\mathrm{d}u = \frac{m!}{\alpha^{m+1}},
+   $$</p>
+<p>我们得到</p>
+<p>$$
+   \int_0^\infty u^{2n}\,e^{-2xu}\,\mathrm{d}u
+= \frac{(2n)!}{(2x)^{2n+1}}.
+   $$</p>
+<ol>
+<li><strong>合并得到渐近级数</strong>  </li>
+</ol>
+<p>$$
+   \int_x^\infty e^{-t^2}\,\mathrm{d}t
+= e^{-x^2}
+  \sum_{n=0}^\infty \frac{(-1)^n}{n!}\,\frac{(2n)!}{(2x)^{2n+1}}
+= \frac{e^{-x^2}}{x}
+  \sum_{n=0}^\infty \frac{(-1)^n\,(2n)!}{n!\,(2x^2)^n}.
+   $$</p>
+<p>最后乘以前面的常数 <span class="arithmatex">\(2/\sqrt{\pi}\)</span> 就得到补全误差函数 <span class="arithmatex">\(\operatorname{erfc}x\)</span> 的渐近展开公式：</p>
+<div class="arithmatex">\[
+\operatorname{erfc}x
+= \frac{2}{\sqrt{\pi}}\int_x^\infty e^{-t^2}\,\mathrm{d}t
+\sim \frac{2\,e^{-x^2}}{\sqrt{\pi}\,x}
+\sum_{n=0}^\infty \frac{(-1)^n\,(2n)!}{n!\,(2x^2)^n}
+\quad (x\to+\infty).
+\]</div>
 
 
 </section>

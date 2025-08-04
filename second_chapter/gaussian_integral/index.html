@@ -123,7 +123,210 @@ Theme by GitBook
 
 
 
-
+<h1 id="_1">高斯积分的常见性质及完整证明</h1>
+<h2 id="_2">一、标准高斯积分</h2>
+<p>性质：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} e^{-x^2}\,\mathrm{d}x = \sqrt{\pi}
+\]</div>
+<p><strong>证明：</strong></p>
+<p>记积分为 <span class="arithmatex">\(I\)</span>，则有：</p>
+<div class="arithmatex">\[
+I^2 = \left(\int_{-\infty}^{+\infty} e^{-x^2}\,\mathrm{d}x\right)^2 
+= \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty} e^{-(x^2+y^2)}\,\mathrm{d}x\,\mathrm{d}y
+\]</div>
+<p>利用极坐标变换 <span class="arithmatex">\(x=r\cos\theta,\,y=r\sin\theta\)</span>，<span class="arithmatex">\(\mathrm{d}x\mathrm{d}y=r\,\mathrm{d}r\mathrm{d}\theta\)</span>，得：</p>
+<div class="arithmatex">\[
+I^2=\int_{\theta=0}^{2\pi}\int_{r=0}^{+\infty} e^{-r^2}r\,\mathrm{d}r\,\mathrm{d}\theta
+\]</div>
+<p>分别积分：</p>
+<div class="arithmatex">\[
+=\left(\int_{0}^{2\pi}\mathrm{d}\theta\right)\left(\int_{0}^{+\infty} re^{-r^2}\,\mathrm{d}r\right)=2\pi\cdot\frac{1}{2}=\pi
+\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[
+I=\sqrt{\pi}
+\]</div>
+<h2 id="_3">二、一般形式高斯积分</h2>
+<p>性质（<span class="arithmatex">\(a&gt;0\)</span>）：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} e^{-ax^2}\,\mathrm{d}x = \sqrt{\frac{\pi}{a}}
+\]</div>
+<p><strong>证明：</strong></p>
+<p>令 <span class="arithmatex">\(u=\sqrt{a}\,x\)</span>，则 <span class="arithmatex">\(x=\frac{u}{\sqrt{a}}\)</span>，<span class="arithmatex">\(\mathrm{d}x=\frac{\mathrm{d}u}{\sqrt{a}}\)</span>，于是：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} e^{-ax^2}\,\mathrm{d}x
+=\frac{1}{\sqrt{a}}\int_{-\infty}^{+\infty} e^{-u^2}\,\mathrm{d}u
+=\sqrt{\frac{\pi}{a}}
+\]</div>
+<hr />
+<h2 id="_4">三、奇次幂高斯积分</h2>
+<p>性质（<span class="arithmatex">\(n\)</span>为奇数，<span class="arithmatex">\(a&gt;0\)</span>）：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^n e^{-ax^2}\,\mathrm{d}x = 0
+\]</div>
+<p><strong>证明：</strong></p>
+<p>当<span class="arithmatex">\(n\)</span>为奇数时，被积函数<span class="arithmatex">\(f(x)=x^n e^{-ax^2}\)</span>为奇函数（满足<span class="arithmatex">\(f(-x)=-f(x)\)</span>），对称区间积分为零。</p>
+<h2 id="_5">四、偶次幂高斯积分</h2>
+<p>性质（<span class="arithmatex">\(n=2k\)</span>，<span class="arithmatex">\(k=0,1,2,\dots\)</span>）：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^{2k} e^{-ax^2}\,\mathrm{d}x=\frac{(2k-1)!!}{2^k a^k}\sqrt{\frac{\pi}{a}}
+\]</div>
+<p>特别地，递推公式为：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^{2k} e^{-ax^2}\,\mathrm{d}x=-\frac{\mathrm{d}}{\mathrm{d}a}\int_{-\infty}^{+\infty} x^{2k-2} e^{-ax^2}\,\mathrm{d}x
+\]</div>
+<h3 id="_6">偶次幂高斯积分的完整证明过程</h3>
+<p>我们考虑如下积分（其中 <span class="arithmatex">\(a&gt;0\)</span>，整数 <span class="arithmatex">\(k\geq 0\)</span>）：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^{2k} e^{-a x^2}\,\mathrm{d}x
+\]</div>
+<h5 id="_7">步骤一：基本积分及递推关系</h5>
+<p>首先回顾标准高斯积分的结果：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} e^{-a x^2}\,\mathrm{d}x = \sqrt{\frac{\pi}{a}}
+\]</div>
+<p>注意到：</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d}a}\left(e^{-a x^2}\right) = -x^2 e^{-a x^2}
+\]</div>
+<p>由此建立递推关系：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^2 e^{-a x^2}\,\mathrm{d}x 
+= -\frac{\mathrm{d}}{\mathrm{d}a}\int_{-\infty}^{+\infty} e^{-a x^2}\,\mathrm{d}x 
+= -\frac{\mathrm{d}}{\mathrm{d}a}\left(\sqrt{\frac{\pi}{a}}\right)
+\]</div>
+<h5 id="k1">步骤二：以 <span class="arithmatex">\(k=1\)</span> 为例详细计算</h5>
+<p>对上式求导，得：</p>
+<div class="arithmatex">\[
+-\frac{\mathrm{d}}{\mathrm{d}a}\left(\sqrt{\frac{\pi}{a}}\right)
+= -\frac{\mathrm{d}}{\mathrm{d}a}\left(\pi^{1/2}a^{-1/2}\right)
+= -\sqrt{\pi}\left(-\frac{1}{2}\right)a^{-3/2}
+= \frac{\sqrt{\pi}}{2a^{3/2}}
+\]</div>
+<p>即：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^2 e^{-a x^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2a^{3/2}}
+\]</div>
+<h5 id="_8">步骤三：一般递推公式</h5>
+<p>对于一般情况 <span class="arithmatex">\(k \geq 1\)</span>，递推关系如下：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^{2k} e^{-a x^2}\,\mathrm{d}x 
+= -\frac{\mathrm{d}}{\mathrm{d}a}\int_{-\infty}^{+\infty} x^{2k-2} e^{-a x^2}\,\mathrm{d}x
+\]</div>
+<p>以此逐步计算，得到：</p>
+<ul>
+<li>当 <span class="arithmatex">\(k=2\)</span> 时：</li>
+</ul>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^4 e^{-a x^2}\,\mathrm{d}x
+= -\frac{\mathrm{d}}{\mathrm{d}a}\left(\frac{\sqrt{\pi}}{2a^{3/2}}\right)
+= \frac{3\sqrt{\pi}}{4a^{5/2}}
+\]</div>
+<ul>
+<li>当 <span class="arithmatex">\(k=3\)</span> 时：</li>
+</ul>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^6 e^{-a x^2}\,\mathrm{d}x
+= -\frac{\mathrm{d}}{\mathrm{d}a}\left(\frac{3\sqrt{\pi}}{4a^{5/2}}\right)
+= \frac{15\sqrt{\pi}}{8a^{7/2}}
+\]</div>
+<h5 id="_9">步骤四：总结一般公式（双阶乘形式）</h5>
+<p>根据上述递推过程，一般形式可表示为：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} x^{2k} e^{-a x^2}\,\mathrm{d}x
+= \frac{(2k-1)!!}{2^k a^k}\sqrt{\frac{\pi}{a}}
+\]</div>
+<p>其中，双阶乘定义为：</p>
+<div class="arithmatex">\[
+(2k-1)!! = (2k-1)(2k-3)\cdots 5\cdot3\cdot1
+\]</div>
+<p>例如：</p>
+<ul>
+<li><span class="arithmatex">\(1!! = 1\)</span></li>
+<li><span class="arithmatex">\(3!! = 3\times1 = 3\)</span></li>
+<li><span class="arithmatex">\(5!! = 5\times3\times1 = 15\)</span></li>
+</ul>
+<h3 id="_10">最终公式总结：</h3>
+<div class="arithmatex">\[
+\boxed{
+\int_{-\infty}^{+\infty} x^{2k} e^{-a x^2}\,\mathrm{d}x
+= \frac{(2k-1)!!}{2^k a^k}\sqrt{\frac{\pi}{a}},\quad a&gt;0,\,k\geq0
+}
+\]</div>
+<h2 id="_11">五、多维高斯积分</h2>
+<p>设<span class="arithmatex">\(n\)</span>维正定对称矩阵<span class="arithmatex">\(A\)</span>，则：</p>
+<div class="arithmatex">\[
+\int_{\mathbb{R}^n} e^{-\mathbf{x}^\top A \mathbf{x}}\,\mathrm{d}\mathbf{x}=\frac{\pi^{n/2}}{\sqrt{\det(A)}}
+\]</div>
+<h3 id="_12">多维高斯积分的详细证明</h3>
+<p>我们要证明的积分公式如下：</p>
+<div class="arithmatex">\[
+\int_{\mathbb{R}^n} e^{-\mathbf{x}^{\top} A \mathbf{x}}\,\mathrm{d}\mathbf{x} 
+= \frac{\pi^{n/2}}{\sqrt{\det(A)}},\quad A\text{为正定对称矩阵}
+\]</div>
+<h5 id="_13">步骤一：积分定义</h5>
+<p>设积分为：</p>
+<div class="arithmatex">\[
+I = \int_{\mathbb{R}^n} e^{-\mathbf{x}^{\top} A \mathbf{x}}\,\mathrm{d}\mathbf{x},
+\]</div>
+<p>其中<span class="arithmatex">\(\mathbf{x}\in\mathbb{R}^n\)</span>，<span class="arithmatex">\(A\)</span> 为<span class="arithmatex">\(n\times n\)</span>的正定对称矩阵。</p>
+<h5 id="_14">步骤二：特征分解</h5>
+<p>因为矩阵<span class="arithmatex">\(A\)</span>为实对称正定矩阵，因此可作特征分解：</p>
+<div class="arithmatex">\[
+A = Q\Lambda Q^{\top},
+\]</div>
+<ul>
+<li>其中<span class="arithmatex">\(Q\)</span>是正交矩阵，即满足<span class="arithmatex">\(Q^{\top}Q=I\)</span>；</li>
+<li><span class="arithmatex">\(\Lambda=\mathrm{diag}(\lambda_1,\dots,\lambda_n)\)</span>，<span class="arithmatex">\(\lambda_i&gt;0\)</span>为<span class="arithmatex">\(A\)</span>的特征值。</li>
+</ul>
+<p>于是积分化为：</p>
+<div class="arithmatex">\[
+I=\int_{\mathbb{R}^n} e^{-\mathbf{x}^{\top} Q\Lambda Q^{\top}\mathbf{x}}\,\mathrm{d}\mathbf{x}.
+\]</div>
+<h5 id="_15">步骤三：变量替换</h5>
+<p>令<span class="arithmatex">\(\mathbf{y}=Q^{\top}\mathbf{x}\)</span>，则有：</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{x}=Q\mathbf{y}\)</span>；</li>
+<li>由于<span class="arithmatex">\(Q\)</span>为正交矩阵，<span class="arithmatex">\(\mathrm{d}\mathbf{x}=\mathrm{d}\mathbf{y}\)</span>。</li>
+</ul>
+<p>积分变为：</p>
+<div class="arithmatex">\[
+I=\int_{\mathbb{R}^n} e^{-(Q\mathbf{y})^{\top}Q\Lambda Q^{\top}(Q\mathbf{y})}\,\mathrm{d}\mathbf{y}.
+\]</div>
+<p>由于正交性，<span class="arithmatex">\(Q^{\top}Q=I\)</span>，因此积分简化为：</p>
+<div class="arithmatex">\[
+I=\int_{\mathbb{R}^n} e^{-\mathbf{y}^{\top}\Lambda\mathbf{y}}\,\mathrm{d}\mathbf{y}.
+\]</div>
+<h5 id="_16">步骤四：积分的分解与计算</h5>
+<p>由于<span class="arithmatex">\(\Lambda\)</span>为对角矩阵，上式可进一步分解为一维积分的乘积：</p>
+<div class="arithmatex">\[
+I=\prod_{i=1}^{n}\int_{-\infty}^{+\infty} e^{-\lambda_i y_i^2}\,\mathrm{d}y_i.
+\]</div>
+<p>对每个积分分别计算，利用标准高斯积分结果：</p>
+<div class="arithmatex">\[
+\int_{-\infty}^{+\infty} e^{-\lambda_i y_i^2}\,\mathrm{d}y_i=\sqrt{\frac{\pi}{\lambda_i}}.
+\]</div>
+<p>因此得到：</p>
+<div class="arithmatex">\[
+I=\prod_{i=1}^{n}\sqrt{\frac{\pi}{\lambda_i}}.
+\]</div>
+<h5 id="_17">步骤五：特征值与行列式的关系</h5>
+<p>特征值的乘积等于矩阵的行列式：</p>
+<div class="arithmatex">\[
+\det(A)=\det(Q\Lambda Q^{\top})=\det(\Lambda)=\lambda_1\lambda_2\cdots\lambda_n.
+\]</div>
+<p>于是，我们最终得到积分结果：</p>
+<div class="arithmatex">\[
+I=\frac{\pi^{n/2}}{\sqrt{\lambda_1\lambda_2\cdots\lambda_n}}=\frac{\pi^{n/2}}{\sqrt{\det(A)}}.
+\]</div>
+<h5 id="_18">最终结论</h5>
+<p>综上所述，完整证明了多维高斯积分公式：</p>
+<div class="arithmatex">\[
+\boxed{
+\int_{\mathbb{R}^n} e^{-\mathbf{x}^{\top} A \mathbf{x}}\,\mathrm{d}\mathbf{x}=\frac{\pi^{n/2}}{\sqrt{\det(A)}},\quad A&gt;0
+}
+\]</div>
 
 
 </section>
