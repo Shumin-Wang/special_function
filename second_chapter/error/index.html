@@ -56,6 +56,10 @@
 <li class="header">一些好用的函数</li>
 
 <li>
+<a href="../double_factorial/" class="">双阶乘</a>
+</li>
+
+<li>
 <a href="./" class="active">误差函数</a>
 </li>
 
@@ -278,7 +282,7 @@ R_N(x)
 <p>$$
    \int_0^\infty e^{-2xu}\,e^{-u^2}\,\mathrm{d}u
 = \sum_{n=0}^\infty \frac{(-1)^n}{n!}
-  \int_0^\infty u^{2n}\,e^{-2xu}\,\mathrm{d}u.
+\int_0^\infty u^{2n}\,e^{-2xu}\,\mathrm{d}u.
    $$</p>
 <ol>
 <li><strong>逐项积分用 Gamma 函数</strong><br />
@@ -298,9 +302,9 @@ R_N(x)
 <p>$$
    \int_x^\infty e^{-t^2}\,\mathrm{d}t
 = e^{-x^2}
-  \sum_{n=0}^\infty \frac{(-1)^n}{n!}\,\frac{(2n)!}{(2x)^{2n+1}}
+\sum_{n=0}^\infty \frac{(-1)^n}{n!}\,\frac{(2n)!}{(2x)^{2n+1}}
 = \frac{e^{-x^2}}{x}
-  \sum_{n=0}^\infty \frac{(-1)^n\,(2n)!}{n!\,(2x^2)^n}.
+\sum_{n=0}^\infty \frac{(-1)^n\,(2n)!}{n!\,(2x^2)^n}.
    $$</p>
 <p>最后乘以前面的常数 <span class="arithmatex">\(2/\sqrt{\pi}\)</span> 就得到补全误差函数 <span class="arithmatex">\(\operatorname{erfc}x\)</span> 的渐近展开公式：</p>
 <div class="arithmatex">\[

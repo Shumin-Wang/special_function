@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title>拉格朗日展开公式 - 特殊函数</title>
+<title>双阶乘 - 特殊函数</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <meta name="generator" content="mkdocs-1.6.1, mkdocs-gitbook-1.0.7">
@@ -34,41 +34,41 @@
 <li class="header">无穷级数和无穷乘积</li>
 
 <li>
-<a href="../Bernoulli/" class="">伯努利多项式与伯努利数</a>
+<a href="../../first_chapter/Bernoulli/" class="">伯努利多项式与伯努利数</a>
 </li>
 
 <li>
-<a href="../euler/" class="">欧拉多项式与欧拉数</a>
+<a href="../../first_chapter/euler/" class="">欧拉多项式与欧拉数</a>
 </li>
 
 <li>
-<a href="../maclaurin/" class="">欧拉-麦克洛林公式</a>
+<a href="../../first_chapter/maclaurin/" class="">欧拉-麦克洛林公式</a>
 </li>
 
 <li>
-<a href="./" class="active">拉格朗日展开公式</a>
+<a href="../../first_chapter/lagrange/" class="">拉格朗日展开公式</a>
 </li>
 
 <li>
-<a href="../orthogonal/" class="">正交多项式</a>
+<a href="../../first_chapter/orthogonal/" class="">正交多项式</a>
 </li>
 
 <li class="header">一些好用的函数</li>
 
 <li>
-<a href="../../second_chapter/double_factorial/" class="">双阶乘</a>
+<a href="./" class="active">双阶乘</a>
 </li>
 
 <li>
-<a href="../../second_chapter/error/" class="">误差函数</a>
+<a href="../error/" class="">误差函数</a>
 </li>
 
 <li>
-<a href="../../second_chapter/stirling/" class="">斯特林公式</a>
+<a href="../stirling/" class="">斯特林公式</a>
 </li>
 
 <li>
-<a href="../../second_chapter/gaussian_integral/" class="">高斯积分</a>
+<a href="../gaussian_integral/" class="">高斯积分</a>
 </li>
 
 <li class="header">Gamma、Beta和Zeta函数</li>
@@ -127,21 +127,69 @@ Theme by GitBook
 
 
 
-<h1 id="_1">伯努利多项式与伯努利数</h1>
-<p>在数学中，伯努利多项式与伯努利数是一对十分重要的概念，它们在组合数学、数论、概率论等领域有着广泛的应用。本文将深入探讨伯努利多项式与伯努利数的定义、性质以及它们之间的关系。</p>
-<p>伯努利多项式<span class="arithmatex">\(\mathrm{B}_n(x)\)</span>（或<span class="arithmatex">\(\varphi_n(x)\)</span>，<span class="arithmatex">\(n = 0,1,2,\cdots\)</span>）有不同的表示法表示，常见的有<strong>函数法</strong>和<strong>代数法</strong>。</p>
-<p><strong>函数法：</strong> 由下列展开式给出</p>
+<h1 id="double-factorial">双阶乘 (Double Factorial)</h1>
+<p>双阶乘定义如下：</p>
 <div class="arithmatex">\[
-\begin{align}\frac{t\mathrm{e}^{xt}}{\mathrm{e}^t-1}=\sum_{n=0}^\infty\frac{t^n}{n!}\varphi_n(x).\end{align}    \tag{1}
+n!! = \begin{cases}
+n\times(n-2)\times(n-4)\times\cdots\times3\times1, &amp; n&gt;0,\text{且为奇数}\\[6pt]
+n\times(n-2)\times(n-4)\times\cdots\times4\times2, &amp; n&gt;0,\text{且为偶数}\\[6pt]
+1, &amp; n=0\text{或}n=-1
+\end{cases}
 \]</div>
-<p><strong>代数法：</strong> 当<span class="arithmatex">\(n \geq 0\)</span>时，</p>
+<p>例如：</p>
+<ul>
+<li>奇数：<span class="arithmatex">\(7!! = 7 \times 5 \times 3 \times 1 = 105\)</span></li>
+<li>偶数：<span class="arithmatex">\(8!! = 8 \times 6 \times 4 \times 2 = 384\)</span></li>
+<li>特殊：<span class="arithmatex">\(0!!=1\)</span>，<span class="arithmatex">\((-1)!!=1\)</span></li>
+</ul>
+<h2 id="_1">常用性质及证明</h2>
+<h3 id="1">性质 1：递推关系</h3>
 <div class="arithmatex">\[
-\varphi_n(x)=\sum_{k=0}^n\binom nk\varphi_kx^{n-k}   \tag{2}
+n!! = n \times (n-2)!!
 \]</div>
-<p>其中，<span class="arithmatex">\(\varphi_k = \varphi_k(0)\)</span>，称为伯努利数，<span class="arithmatex">\(\binom nk=\Large\frac{n\times(n-1)\times\cdots\times(n-k+1)}{k\times(k-1)\times\cdots\times1}\)</span>是二项式系数。</p>
-<h1 id="_2">欧拉多项式与欧拉数</h1>
-<h1 id="-">欧拉-麦克洛林公式</h1>
-<h1 id="_3">拉格朗日展开公式</h1>
+<h4 id="_2">证明：</h4>
+<ul>
+<li>奇数情况：</li>
+</ul>
+<div class="arithmatex">\[
+(2k+1)!! = (2k+1)\times(2k-1)\times\cdots\times3\times1 = (2k+1)\times(2k-1)!!
+\]</div>
+<ul>
+<li>偶数情况：</li>
+</ul>
+<div class="arithmatex">\[
+(2k)!! = 2k\times(2k-2)\times\cdots\times4\times2 = (2k)\times(2k-2)!!
+\]</div>
+<h3 id="2">性质 2：偶数双阶乘与普通阶乘关系</h3>
+<div class="arithmatex">\[
+(2n)!! = 2^n \times n!
+\]</div>
+<h4 id="_3">证明：</h4>
+<p>由定义：</p>
+<div class="arithmatex">\[
+(2n)!!=2n\times(2n-2)\times\cdots\times4\times2= 2^n\times(n\times(n-1)\times\cdots\times1)=2^n\times n!
+\]</div>
+<h3 id="3">性质 3：奇数双阶乘与普通阶乘关系</h3>
+<div class="arithmatex">\[
+(2n-1)!! = \frac{(2n)!}{2^n\times n!}
+\]</div>
+<h4 id="_4">证明：</h4>
+<p>展开<span class="arithmatex">\((2n)!\)</span>：</p>
+<div class="arithmatex">\[
+(2n)! = [2n\times(2n-2)\times\cdots\times4\times2]\times[(2n-1)\times(2n-3)\times\cdots\times3\times1]
+\]</div>
+<p>即：</p>
+<div class="arithmatex">\[
+(2n)! = (2^n\times n!)\times(2n-1)!!
+\]</div>
+<p>从而：</p>
+<div class="arithmatex">\[
+(2n-1)!! = \frac{(2n)!}{2^n\times n!}
+\]</div>
+<h3 id="4gamma">性质 4：Gamma函数表示</h3>
+<div class="arithmatex">\[
+n!! = 2^{\frac{n}{2}}\frac{\Gamma\left(\frac{n}{2}+1\right)}{\sqrt{\pi}^{\,1-(-1)^n}}
+\]</div>
 
 
 </section>
